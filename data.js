@@ -42,10 +42,10 @@ window.REPORT_DATA = {
   ["2026-11-14", "Canon_Display_IL", 0, 0, 0],
   ["2026-11-14", "Canon_Display_GR", 0, 0, 0],
   ["2026-11-15", "Canon_RO_Search", 1, 0, 0],
-  ["2026-11-15", "Canon_BG_Search", 170, 10, 3.65],
-  ["2026-11-15", "Canon_Search_GR", 28, 0, 0],
+  ["2026-11-15", "Canon_BG_Search", 194, 10, 3.65],
+  ["2026-11-15", "Canon_Search_GR", 31, 0, 0],
   ["2026-11-15", "Canon_RO_Display", 0, 0, 0],
-  ["2026-11-15", "Canon_BG_Display", 0, 0, 0],
+  ["2026-11-15", "Canon_BG_Display", 22884, 392, 41.58],
   ["2026-11-15", "Canon_Display_IL", 0, 0, 0],
   ["2026-11-15", "Canon_Display_GR", 0, 0, 0]
  ]
