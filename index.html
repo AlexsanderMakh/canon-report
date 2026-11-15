@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Canon SMB «Built to Grow» — отчёт Google Ads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7f9;--card:#fff;--ink:#14161a;--muted:#6b7280;--line:#e6e8ec;
+  --accent:#d71920;--accent-soft:#fdecec;--plan:#c9ced6;--ok:#16a34a;--warn:#d97706;--bad:#dc2626;
+  --r:14px;--sh:0 1px 2px rgba(16,24,40,.04),0 4px 16px rgba(16,24,40,.05);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 60px}
+header.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.dot{width:12px;height:36px;border-radius:4px;background:var(--accent)}
+h1{font-size:26px;line-height:1.2;margin:0;font-weight:700;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:13px;margin-top:4px}
+.updated{font-size:12px;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.bar{position:sticky;top:0;z-index:5;background:rgba(246,247,249,.92);backdrop-filter:blur(8px);padding:12px 0;margin:0 0 18px}
+.controls{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:14px;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+.grp{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lbl{font-size:12px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+input[type=date]{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:#fff;color:var(--ink)}
+.chip{font:inherit;font-size:13px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;cursor:pointer;color:var(--ink);transition:.15s}
+.chip:hover{border-color:#c7cbd2}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.spacer{flex:1}
+.btn{font:inherit;font-size:14px;font-weight:600;border:0;border-radius:10px;padding:9px 14px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.primary:hover{filter:brightness(.95)}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.summary{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px;font-size:16px;margin-bottom:18px}
+.summary b{font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px}
+.k-l{font-size:13px;color:var(--muted);font-weight:500;display:flex;justify-content:space-between;gap:6px}
+.k-v{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.k-n{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.prog{height:6px;background:#eef0f3;border-radius:99px;margin-top:10px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.pill{white-space:nowrap;font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px}
+.pill.bad{background:#fdecec;color:var(--bad)}.pill.warn{background:#fff4e5;color:var(--warn)}.pill.ok{background:#e8f7ee;color:var(--ok)}
+h2{font-size:17px;margin:0 0 4px;font-weight:600}
+.hint{font-size:13px;color:var(--muted);margin:0 0 14px}
+.section{margin-bottom:18px}
+.chart-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.seg{display:inline-flex;background:#f1f2f4;border-radius:10px;padding:3px}
+.seg button{font:inherit;font-size:13px;border:0;background:none;padding:6px 12px;border-radius:8px;cursor:pointer;color:var(--muted)}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08);font-weight:600}
+.chart{position:relative;margin-top:8px}
+.chart svg{display:block;width:100%}
+.chart text{font-size:11px;fill:var(--muted)}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.tip{position:absolute;pointer-events:none;background:#14161a;color:#fff;font-size:12px;padding:8px 10px;border-radius:8px;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.18);display:none;z-index:3}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+th{font-size:12px;font-weight:600;color:var(--muted);text-align:right;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;text-transform:uppercase;letter-spacing:.03em}
+td{padding:12px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+tr:last-child td{border-bottom:0}
+tfoot td{font-weight:700;border-top:2px solid var(--line)}
+.cname{font-weight:600}.cmeta{font-size:12px;color:var(--muted)}
+.mini{display:inline-block;width:70px;height:6px;background:#eef0f3;border-radius:99px;vertical-align:middle;margin-left:8px;overflow:hidden}
+.mini i{display:block;height:100%;background:var(--accent)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+ol.list{margin:0;padding-left:20px}ol.list li{margin-bottom:8px}
+details{margin-top:6px}summary{cursor:pointer;font-weight:600}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:12px 0 0;font-size:14px}dt{font-weight:600}dd{margin:0;color:var(--muted)}
+.empty{color:var(--muted);font-size:14px;padding:30px 0;text-align:center}
+footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
+@media (max-width:640px){.bar{position:static}h1{font-size:21px}.k-v{font-size:24px}.controls{padding:12px}}
+@media print{
+  body{background:#fff}.bar{position:static;padding:0}.controls .no-print,.seg,.btn{display:none!important}
+  .controls{box-shadow:none;border:0;padding:0}.card,.summary{box-shadow:none;break-inside:avoid}
+  .wrap{padding:0}.print-range{display:block!important}
+}
+.print-range{display:none;font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="dot"></span>
+      <div><h1>Canon SMB «Built to Grow» — Google Ads</h1>
+      <div class="sub">Румыния · Болгария · Греция · Израиль &nbsp;·&nbsp; поиск и медийная реклама (КМС) &nbsp;·&nbsp; флайт 11 ноября — 31 декабря 2026</div></div>
+    </div>
+    <div class="updated" id="updated">Данные обновлены: —</div>
+  </header>
+
+  <div class="bar">
+    <div class="controls">
+      <div class="grp"><span class="lbl">Период</span>
+        <input type="date" id="from" aria-label="С даты"><span>—</span><input type="date" id="to" aria-label="По дату">
+      </div>
+      <div class="grp no-print" id="presets">
+        <button class="chip" data-p="all">Вся кампания</button>
+        <button class="chip" data-p="7">7 дней</button>
+        <button class="chip" data-p="last">Последний день</button>
+      </div>
+      <div class="grp no-print"><span class="lbl">Страна</span><span id="countries"></span></div>
+      <div class="grp no-print"><span class="lbl">Тип</span><span id="types"></span></div>
+      <div class="spacer"></div>
+      <div class="grp no-print">
+        <button class="btn ghost" id="dl-csv" title="Таблица по дням и кампаниям для Excel">⬇ Excel</button>
+        <button class="btn primary" id="dl-pdf" title="Сохранить страницу как PDF">⬇ PDF</button>
+      </div>
+      <div class="print-range" id="print-range"></div>
+    </div>
+  </div>
+
+  <div class="summary" id="summary">—</div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="card section">
+    <div class="chart-head">
+      <div><h2>Динамика по дням</h2><p class="hint">Столбики — факт за день, линия — сколько нужно в день по медиаплану.</p></div>
+      <div class="seg" id="metric">
+        <button data-m="impressions" class="on">Показы</button><button data-m="clicks">Клики</button><button data-m="cost">Расход</button>
+      </div>
+    </div>
+    <div class="chart" id="chart"></div>
+    <div class="legend"><span><i style="background:var(--accent)"></i>Факт</span><span><i style="background:var(--ink);height:2px;vertical-align:3px"></i>План в день</span></div>
+  </div>
+
+  <div class="card section">
+    <h2>Кампании</h2><p class="hint">План пересчитан на выбранные дни: медиаплан кампании ÷ 51 день флайта × число дней в периоде.</p>
+    <div class="tw"><table id="tbl">
+      <thead><tr><th>Кампания</th><th>Показы</th><th>План показов</th><th>% плана</th><th>Клики</th><th>План кликов</th><th>CTR</th><th>Цена клика</th><th>Расход</th><th>План расхода</th></tr></thead>
+      <tbody></tbody><tfoot></tfoot>
+    </table></div>
+  </div>
+
+  <div class="two section">
+    <div class="card">
+      <h2>Что происходит</h2>
+      <ol class="list">
+        <li><b>Медийная реклама (КМС) почти не крутится.</b> На неё приходится ~95% плановых показов, но кампании стоят на оплате за клики с лимитом 0,30 € и узким таргетингом по названиям моделей.</li>
+        <li><b>Израиль не стартовал до 13 ноября</b> — кампания стояла на конверсиях, которые в аккаунте не настроены. Переведена на клики.</li>
+        <li><b>Поиск в Румынии</b> 12–13 ноября крутился по широким ключам (магазины, конкуренты). Ключи почищены 13 ноября.</li>
+        <li><b>После чистки</b> остались только точные модели — поиск почти перестал показываться.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h2>Что делаем</h2>
+      <ol class="list">
+        <li>КМС — перевод на оплату за показы в рамках CPM медиаплана и аудитории малого бизнеса вместо названий моделей.</li>
+        <li>Поиск — расширяем семантику: бренд + категория на местном языке, офисные запросы, ReadIris; общий список минус-слов.</li>
+        <li>Ставки поиска по медиаплану: GR 0,65 €, RO 0,45 €, BG 0,25 €.</li>
+        <li>Дневные бюджеты выравниваем под план, чтобы догнать недобор первой недели.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card section">
+    <details><summary>Что означают показатели</summary>
+      <dl>
+        <dt>Показы</dt><dd>сколько раз реклама была показана людям</dd>
+        <dt>Клики</dt><dd>сколько раз по рекламе нажали и перешли на сайт</dd>
+        <dt>CTR</dt><dd>доля кликов от показов: клики ÷ показы</dd>
+        <dt>Цена клика</dt><dd>средняя стоимость одного перехода: расход ÷ клики</dd>
+        <dt>CPM</dt><dd>стоимость 1000 показов</dd>
+        <dt>План</dt><dd>значение из медиаплана Canon SMB 2026, пересчитанное на выбранные дни</dd>
+        <dt>КМС</dt><dd>контекстно-медийная сеть Google: баннеры на сайтах и в приложениях</dd>
+      </dl>
+    </details>
+  </div>
+
+  <footer>Источник: кабинет Primax (Google Ads), медиаплан Canon SMB Campaign 2026. Суммы в евро.</footer>
+</div>
+<div class="tip" id="tip"></div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+const D = window.REPORT_DATA;
+const FLIGHT_DAYS = Math.round((new Date(D.flight.end) - new Date(D.flight.start)) / 864e5) + 1;
+const dates = [...new Set(D.daily.map(r => r[0]))].sort();
+const firstDate = dates[0], lastDate = dates[dates.length - 1];
+const C = Object.fromEntries(D.campaigns.map(c => [c.id, c]));
+const st = { from: firstDate, to: lastDate, country: 'all', type: 'all', metric: 'impressions' };
+
+const nf = (v, d = 0) => (v || 0).toLocaleString('ru-RU', { minimumFractionDigits: d, maximumFractionDigits: d });
+const eur = (v, d = 2) => nf(v, d) + ' €';
+const pct = (v) => (v > 0 && v < 0.01 ? nf(v * 100, 2) : nf(v * 100, 1)) + '%';
+const fd = (s) => { const [y, m, d] = s.split('-'); return `${d}.${m}.${y}`; };
+const fdShort = (s) => { const dt = new Date(s + 'T00:00:00Z'); return dt.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', timeZone: 'UTC' }).replace('.', ''); };
+const addDays = (s, n) => { const d = new Date(s + 'T00:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const el = (id) => document.getElementById(id);
+
+el('updated').textContent = 'Данные обновлены: ' + fd(D.updated);
+['from', 'to'].forEach(k => { el(k).min = firstDate; el(k).max = lastDate; });
+
+function chips(boxId, items, key) {
+  const box = el(boxId); box.innerHTML = '';
+  items.forEach(([v, label]) => {
+    const b = document.createElement('button'); b.className = 'chip' + (st[key] === v ? ' on' : ''); b.textContent = label;
+    b.onclick = () => { st[key] = v; render(); }; box.appendChild(b);
+  });
+}
+const countries = [...new Set(D.campaigns.map(c => c.country))];
+const types = [...new Set(D.campaigns.map(c => c.type))];
+
+function selCampaigns() { return D.campaigns.filter(c => (st.country === 'all' || c.country === st.country) && (st.type === 'all' || c.type === st.type)); }
+function rangeDays() { return dates.filter(d => d >= st.from && d <= st.to); }
+
+function compute() {
+  const camps = selCampaigns(), ids = new Set(camps.map(c => c.id)), days = rangeDays(), n = days.length;
+  const rows = D.daily.filter(r => ids.has(r[1]) && r[0] >= st.from && r[0] <= st.to);
+  const byC = camps.map(c => {
+    const rr = rows.filter(r => r[1] === c.id);
+    const imp = rr.reduce((s, r) => s + r[2], 0), clk = rr.reduce((s, r) => s + r[3], 0), cost = rr.reduce((s, r) => s + r[4], 0);
+    const k = n / FLIGHT_DAYS;
+    return { c, imp, clk, cost, pImp: c.impressions * k, pClk: c.clicks * k, pCost: c.budget * k };
+  });
+  const sum = (f) => byC.reduce((s, x) => s + x[f], 0);
+  const tot = { imp: sum('imp'), clk: sum('clk'), cost: sum('cost'), pImp: sum('pImp'), pClk: sum('pClk'), pCost: sum('pCost') };
+  const byDay = days.map(d => {
+    const rr = rows.filter(r => r[0] === d);
+    return { d, impressions: rr.reduce((s, r) => s + r[2], 0), clicks: rr.reduce((s, r) => s + r[3], 0), cost: rr.reduce((s, r) => s + r[4], 0) };
+  });
+  const perDayPlan = { impressions: camps.reduce((s, c) => s + c.impressions, 0) / FLIGHT_DAYS, clicks: camps.reduce((s, c) => s + c.clicks, 0) / FLIGHT_DAYS, cost: camps.reduce((s, c) => s + c.budget, 0) / FLIGHT_DAYS };
+  return { camps, byC, tot, byDay, perDayPlan, n, rows };
+}
+
+function status(p) { return p >= 0.9 ? ['ok', 'в плане'] : p >= 0.5 ? ['warn', 'отстаём'] : ['bad', 'ниже плана']; }
+
+function render() {
+  el('from').value = st.from; el('to').value = st.to;
+  chips('countries', [['all', 'Все'], ...countries.map(c => [c, c])], 'country');
+  chips('types', [['all', 'Все'], ...types.map(t => [t, t])], 'type');
+  document.querySelectorAll('#metric button').forEach(b => b.classList.toggle('on', b.dataset.m === st.metric));
+  document.querySelectorAll('#presets .chip').forEach(b => b.classList.remove('on'));
+  if (st.from === firstDate && st.to === lastDate) document.querySelector('[data-p=all]').classList.add('on');
+  else if (st.from === st.to && st.to === lastDate) document.querySelector('[data-p=last]').classList.add('on');
+
+  const R = compute(), t = R.tot;
+  const period = st.from === st.to ? fd(st.from) : `${fd(st.from)} — ${fd(st.to)}`;
+  el('print-range').textContent = `Период: ${period} · дней: ${R.n}`;
+
+  // summary
+  const ip = t.pImp ? t.imp / t.pImp : 0, cp = t.pClk ? t.clk / t.pClk : 0;
+  el('summary').innerHTML = R.n === 0 ? 'За выбранный период данных нет.' :
+    `За <b>${period}</b> (${R.n} ${R.n === 1 ? 'день' : R.n < 5 ? 'дня' : 'дней'}) реклама получила <b>${nf(t.imp)}</b> показов при плане <b>${nf(t.pImp)}</b> — это <b>${pct(ip)}</b> плана, и <b>${nf(t.clk)}</b> кликов при плане <b>${nf(t.pClk)}</b> (${pct(cp)}). Потрачено <b>${eur(t.cost)}</b> из запланированных ${eur(t.pCost, 0)}.`;
+
+  // kpis
+  const kpi = (label, v, note, p) => {
+    let pill = '', bar = '';
+    if (p != null) { const [cls, txt] = status(p); pill = `<span class="pill ${cls}">${txt}</span>`; bar = `<div class="prog"><i style="width:${Math.min(100, p * 100)}%"></i></div>`; }
+    return `<div class="card"><div class="k-l"><span>${label}</span>${pill}</div><div class="k-v">${v}</div><div class="k-n">${note}</div>${bar}</div>`;
+  };
+  el('kpis').innerHTML =
+    kpi('Показы', nf(t.imp), `план ${nf(t.pImp)} · ${pct(ip)}`, ip) +
+    kpi('Клики', nf(t.clk), `план ${nf(t.pClk)} · ${pct(cp)}`, cp) +
+    kpi('Расход', eur(t.cost), `план ${eur(t.pCost, 0)}`, t.pCost ? t.cost / t.pCost : 0) +
+    kpi('CTR', t.imp ? pct(t.clk / t.imp) : '—', 'клики ÷ показы') +
+    kpi('Цена клика', t.clk ? eur(t.cost / t.clk) : '—', 'расход ÷ клики') +
+    kpi('CPM', t.imp ? eur(t.cost / t.imp * 1000) : '—', 'цена 1000 показов');
+
+  drawChart(R);
+
+  // table
+  const tb = document.querySelector('#tbl tbody'), tf = document.querySelector('#tbl tfoot');
+  tb.innerHTML = R.byC.map(x => {
+    const p = x.pImp ? x.imp / x.pImp : 0;
+    return `<tr><td><div class="cname">${x.c.id}</div><div class="cmeta">${x.c.country} · ${x.c.type}</div></td>
+      <td>${nf(x.imp)}</td><td>${nf(x.pImp)}</td><td>${pct(p)}<span class="mini"><i style="width:${Math.min(100, p * 100)}%"></i></span></td>
+      <td>${nf(x.clk)}</td><td>${nf(x.pClk)}</td><td>${x.imp ? pct(x.clk / x.imp) : '—'}</td><td>${x.clk ? eur(x.cost / x.clk) : '—'}</td>
+      <td>${eur(x.cost)}</td><td>${eur(x.pCost, 0)}</td></tr>`;
+  }).join('');
+  tf.innerHTML = `<tr><td>Итого</td><td>${nf(t.imp)}</td><td>${nf(t.pImp)}</td><td>${pct(ip)}</td><td>${nf(t.clk)}</td><td>${nf(t.pClk)}</td><td>${t.imp ? pct(t.clk / t.imp) : '—'}</td><td>${t.clk ? eur(t.cost / t.clk) : '—'}</td><td>${eur(t.cost)}</td><td>${eur(t.pCost, 0)}</td></tr>`;
+}
+
+function drawChart(R) {
+  const box = el('chart'), m = st.metric, data = R.byDay, plan = R.perDayPlan[m];
+  if (!data.length) { box.innerHTML = '<div class="empty">Нет данных за период</div>'; return; }
+  const W = box.clientWidth || 800, H = 260, L = 56, Rr = 12, T = 12, B = 28;
+  const max = Math.max(plan, ...data.map(d => d[m])) * 1.1 || 1;
+  const bw = (W - L - Rr) / data.length, y = v => T + (H - T - B) * (1 - v / max);
+  const fmt = m === 'cost' ? (v) => eur(v, 0) : (v) => nf(v);
+  let s = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="Динамика по дням">`;
+  for (let i = 0; i <= 4; i++) { const v = max / 4 * i, yy = y(v); s += `<line x1="${L}" x2="${W - Rr}" y1="${yy}" y2="${yy}" stroke="#eef0f3"/><text x="${L - 8}" y="${yy + 4}" text-anchor="end">${fmt(v)}</text>`; }
+  const step = Math.ceil(data.length / Math.max(1, Math.floor((W - L) / 60)));
+  data.forEach((d, i) => {
+    const x = L + i * bw, h = (H - T - B) - (y(d[m]) - T), w = Math.max(2, Math.min(48, bw * 0.6));
+    s += `<rect data-i="${i}" x="${x + (bw - w) / 2}" y="${y(d[m])}" width="${w}" height="${Math.max(d[m] > 0 ? 2 : 0, h)}" rx="4" fill="var(--accent)"/>`;
+    if (i % step === 0) s += `<text x="${x + bw / 2}" y="${H - 8}" text-anchor="middle">${fdShort(d.d)}</text>`;
+    s += `<rect class="hit" data-i="${i}" x="${x}" y="${T}" width="${bw}" height="${H - T - B}" fill="transparent"/>`;
+  });
+  s += `<line x1="${L}" x2="${W - Rr}" y1="${y(plan)}" y2="${y(plan)}" stroke="var(--ink)" stroke-width="2" stroke-dasharray="6 4"/>`;
+  s += `<text x="${W - Rr}" y="${y(plan) - 6}" text-anchor="end" style="fill:var(--ink);font-weight:600">план ${fmt(plan)}/день</text></svg>`;
+  box.innerHTML = s;
+  const tip = el('tip');
+  box.querySelectorAll('.hit').forEach(h => {
+    h.addEventListener('mousemove', (e) => {
+      const d = data[+h.dataset.i];
+      tip.innerHTML = `<b>${fd(d.d)}</b><br>Показы: ${nf(d.impressions)} (план ${nf(R.perDayPlan.impressions)})<br>Клики: ${nf(d.clicks)}<br>Расход: ${eur(d.cost)}`;
+      tip.style.display = 'block';
+      tip.style.left = Math.min(e.pageX + 14, window.innerWidth - 240) + 'px'; tip.style.top = (e.pageY + 14) + 'px';
+    });
+    h.addEventListener('mouseleave', () => tip.style.display = 'none');
+  });
+}
+
+// events
+el('from').onchange = (e) => { st.from = e.target.value || firstDate; if (st.from > st.to) st.to = st.from; render(); };
+el('to').onchange = (e) => { st.to = e.target.value || lastDate; if (st.to < st.from) st.from = st.to; render(); };
+document.querySelectorAll('#presets .chip').forEach(b => b.onclick = () => {
+  const p = b.dataset.p;
+  if (p === 'all') { st.from = firstDate; st.to = lastDate; }
+  if (p === '7') { st.to = lastDate; st.from = addDays(lastDate, -6) < firstDate ? firstDate : addDays(lastDate, -6); }
+  if (p === 'last') { st.from = st.to = lastDate; }
+  render();
+});
+document.querySelectorAll('#metric button').forEach(b => b.onclick = () => { st.metric = b.dataset.m; render(); });
+window.addEventListener('resize', () => drawChart(compute()));
+
+el('dl-pdf').onclick = () => window.print();
+el('dl-csv').onclick = () => {
+  const R = compute(), n = (v, d = 0) => (v || 0).toFixed(d).replace('.', ',');
+  const lines = [];
+  lines.push(`Canon SMB Built to Grow — Google Ads;Период: ${fd(st.from)} — ${fd(st.to)};Страна: ${st.country === 'all' ? 'все' : st.country};Тип: ${st.type === 'all' ? 'все' : st.type}`);
+  lines.push('');
+  lines.push('ИТОГ ПО КАМПАНИЯМ');
+  lines.push('Кампания;Страна;Тип;Показы;План показов;% плана;Клики;План кликов;CTR %;Цена клика €;Расход €;План расхода €');
+  R.byC.forEach(x => lines.push([x.c.id, x.c.country, x.c.type, x.imp, n(x.pImp), n(x.pImp ? x.imp / x.pImp * 100 : 0, 2), x.clk, n(x.pClk), n(x.imp ? x.clk / x.imp * 100 : 0, 2), n(x.clk ? x.cost / x.clk : 0, 2), n(x.cost, 2), n(x.pCost, 2)].join(';')));
+  const t = R.tot;
+  lines.push(['Итого', '', '', t.imp, n(t.pImp), n(t.pImp ? t.imp / t.pImp * 100 : 0, 2), t.clk, n(t.pClk), n(t.imp ? t.clk / t.imp * 100 : 0, 2), n(t.clk ? t.cost / t.clk : 0, 2), n(t.cost, 2), n(t.pCost, 2)].join(';'));
+  lines.push('');
+  lines.push('ПО ДНЯМ');
+  lines.push('Дата;Кампания;Страна;Тип;Показы;Клики;Расход €');
+  R.rows.forEach(r => lines.push([fd(r[0]), r[1], C[r[1]].country, C[r[1]].type, r[2], r[3], n(r[4], 2)].join(';')));
+  const blob = new Blob([String.fromCharCode(0xFEFF) + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `canon-report_${st.from}_${st.to}.csv`; document.body.appendChild(a); a.click(); a.remove();
+};
+
+render();
+})();
+</script>
+</body>
+</html>
