@@ -1,0 +1,52 @@
+// Данные отчёта из кабинета Primax (факт) и медиаплана Canon SMB 2026 (план).
+// daily: [дата, кампания, показы, клики, расход €]
+window.REPORT_DATA = {
+ "updated": "2026-11-16",
+ "flight": {"start": "2026-11-11", "end": "2026-12-31"},
+ "campaigns": [
+  {"id": "Canon_RO_Search", "country": "Румыния", "type": "Поиск", "buying": "CPC", "rate": 0.45, "budget": 1400, "impressions": 51852, "clicks": 3111},
+  {"id": "Canon_BG_Search", "country": "Болгария", "type": "Поиск", "buying": "CPC", "rate": 0.25, "budget": 2200, "impressions": 88000, "clicks": 8800},
+  {"id": "Canon_Search_GR", "country": "Греция", "type": "Поиск", "buying": "CPC", "rate": 0.65, "budget": 1000, "impressions": 25641, "clicks": 1538},
+  {"id": "Canon_RO_Display", "country": "Румыния", "type": "КМС", "buying": "CPM", "rate": 2.016, "budget": 2300, "impressions": 1140873, "clicks": 6845},
+  {"id": "Canon_BG_Display", "country": "Болгария", "type": "КМС", "buying": "CPM", "rate": 2.24, "budget": 1800, "impressions": 803571, "clicks": 6429},
+  {"id": "Canon_Display_IL", "country": "Израиль", "type": "КМС", "buying": "CPM", "rate": 3.36, "budget": 1100, "impressions": 327381, "clicks": 1637},
+  {"id": "Canon_Display_GR", "country": "Греция", "type": "КМС", "buying": "CPM", "rate": 2.464, "budget": 1500, "impressions": 608766, "clicks": 4870}
+ ],
+ "daily": [
+  ["2026-11-11", "Canon_RO_Search", 0, 0, 0],
+  ["2026-11-11", "Canon_BG_Search", 0, 0, 0],
+  ["2026-11-11", "Canon_Search_GR", 0, 0, 0],
+  ["2026-11-11", "Canon_RO_Display", 0, 0, 0],
+  ["2026-11-11", "Canon_BG_Display", 0, 0, 0],
+  ["2026-11-11", "Canon_Display_IL", 0, 0, 0],
+  ["2026-11-11", "Canon_Display_GR", 0, 0, 0],
+  ["2026-11-12", "Canon_RO_Search", 604, 68, 100.64],
+  ["2026-11-12", "Canon_BG_Search", 0, 0, 0],
+  ["2026-11-12", "Canon_Search_GR", 0, 0, 0],
+  ["2026-11-12", "Canon_RO_Display", 0, 0, 0],
+  ["2026-11-12", "Canon_BG_Display", 0, 0, 0],
+  ["2026-11-12", "Canon_Display_IL", 0, 0, 0],
+  ["2026-11-12", "Canon_Display_GR", 0, 0, 0],
+  ["2026-11-13", "Canon_RO_Search", 384, 33, 26.16],
+  ["2026-11-13", "Canon_BG_Search", 0, 0, 0],
+  ["2026-11-13", "Canon_Search_GR", 4, 0, 0],
+  ["2026-11-13", "Canon_RO_Display", 2, 0, 0],
+  ["2026-11-13", "Canon_BG_Display", 0, 0, 0],
+  ["2026-11-13", "Canon_Display_IL", 0, 0, 0],
+  ["2026-11-13", "Canon_Display_GR", 0, 0, 0],
+  ["2026-11-14", "Canon_RO_Search", 19, 0, 0],
+  ["2026-11-14", "Canon_BG_Search", 6, 0, 0],
+  ["2026-11-14", "Canon_Search_GR", 4, 1, 0.1],
+  ["2026-11-14", "Canon_RO_Display", 0, 0, 0],
+  ["2026-11-14", "Canon_BG_Display", 0, 0, 0],
+  ["2026-11-14", "Canon_Display_IL", 0, 0, 0],
+  ["2026-11-14", "Canon_Display_GR", 0, 0, 0],
+  ["2026-11-15", "Canon_RO_Search", 1, 0, 0],
+  ["2026-11-15", "Canon_BG_Search", 170, 10, 3.65],
+  ["2026-11-15", "Canon_Search_GR", 28, 0, 0],
+  ["2026-11-15", "Canon_RO_Display", 0, 0, 0],
+  ["2026-11-15", "Canon_BG_Display", 0, 0, 0],
+  ["2026-11-15", "Canon_Display_IL", 0, 0, 0],
+  ["2026-11-15", "Canon_Display_GR", 0, 0, 0]
+ ]
+};
