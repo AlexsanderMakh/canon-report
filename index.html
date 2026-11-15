@@ -5,14 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Canon SMB «Built to Grow» — отчёт Google Ads</title>
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f6f7f9;--card:#fff;--ink:#14161a;--muted:#6b7280;--line:#e6e8ec;
-  --accent:#d71920;--accent-soft:#fdecec;--plan:#c9ced6;--ok:#16a34a;--warn:#d97706;--bad:#dc2626;
-  --r:14px;--sh:0 1px 2px rgba(16,24,40,.04),0 4px 16px rgba(16,24,40,.05);
+  --bg:#f6f7f9;--card:#fff;--ink:#14161a;--muted:#6b7280;--line:#e6e8ec;--track:#eef0f3;--grid:#eef0f3;--seg:#f1f2f4;--barbg:rgba(246,247,249,.92);
+  --accent:#d71920;--ok:#16a34a;--warn:#d97706;--bad:#dc2626;--info:#2563eb;
+  --okbg:#e8f7ee;--warnbg:#fff4e5;--badbg:#fdecec;--infobg:#e8f0fe;--tipbg:#14161a;--tipfg:#fff;
+  --r:14px;--sh:0 1px 2px rgba(16,24,40,.04),0 4px 16px rgba(16,24,40,.05);color-scheme:light;
 }
+:root[data-theme=dark]{
+  --bg:#0d0f12;--card:#16191e;--ink:#e8eaed;--muted:#9aa1ab;--line:#262a31;--track:#262a31;--grid:#22262c;--seg:#1e2228;--barbg:rgba(13,15,18,.9);
+  --accent:#ef3b42;--ok:#34d399;--warn:#fbbf24;--bad:#f87171;--info:#60a5fa;
+  --okbg:rgba(52,211,153,.14);--warnbg:rgba(251,191,36,.14);--badbg:rgba(248,113,113,.14);--infobg:rgba(96,165,250,.14);--tipbg:#e8eaed;--tipfg:#0d0f12;
+  --sh:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.25);color-scheme:dark;
+}
+body,.card,.summary,.controls{transition:background-color .2s,border-color .2s,color .2s}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 60px}
@@ -22,19 +31,19 @@ header.top{display:flex;justify-content:space-between;align-items:flex-end;gap:1
 h1{font-size:26px;line-height:1.2;margin:0;font-weight:700;letter-spacing:-.01em}
 .sub{color:var(--muted);font-size:13px;margin-top:4px}
 .updated{font-size:12px;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
-.bar{position:sticky;top:0;z-index:5;background:rgba(246,247,249,.92);backdrop-filter:blur(8px);padding:12px 0;margin:0 0 18px}
+.bar{position:sticky;top:0;z-index:5;background:var(--barbg);backdrop-filter:blur(8px);padding:12px 0;margin:0 0 18px}
 .controls{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:14px;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
 .grp{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .lbl{font-size:12px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.04em}
-input[type=date]{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:#fff;color:var(--ink)}
-.chip{font:inherit;font-size:13px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;cursor:pointer;color:var(--ink);transition:.15s}
-.chip:hover{border-color:#c7cbd2}
-.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+input[type=date]{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--card);color:var(--ink)}
+.chip{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;cursor:pointer;color:var(--ink);transition:.15s}
+.chip:hover{border-color:var(--muted)}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .spacer{flex:1}
 .btn{font:inherit;font-size:14px;font-weight:600;border:0;border-radius:10px;padding:9px 14px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
 .btn.primary{background:var(--accent);color:#fff}
 .btn.primary:hover{filter:brightness(.95)}
-.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.btn.ghost{background:var(--card);border:1px solid var(--line);color:var(--ink)}
 .summary{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px;font-size:16px;margin-bottom:18px}
 .summary b{font-weight:600}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}
@@ -42,23 +51,23 @@ input[type=date]{font:inherit;font-size:14px;border:1px solid var(--line);border
 .k-l{font-size:13px;color:var(--muted);font-weight:500;display:flex;justify-content:space-between;gap:6px}
 .k-v{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px;font-variant-numeric:tabular-nums}
 .k-n{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
-.prog{height:6px;background:#eef0f3;border-radius:99px;margin-top:10px;overflow:hidden}
+.prog{height:6px;background:var(--track);border-radius:99px;margin-top:10px;overflow:hidden}
 .prog i{display:block;height:100%;background:var(--accent);border-radius:99px}
 .pill{white-space:nowrap;font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px}
-.pill.bad{background:#fdecec;color:var(--bad)}.pill.warn{background:#fff4e5;color:var(--warn)}.pill.ok{background:#e8f7ee;color:var(--ok)}
+.pill.bad{background:var(--badbg);color:var(--bad)}.pill.warn{background:var(--warnbg);color:var(--warn)}.pill.ok{background:var(--okbg);color:var(--ok)}.pill.info{background:var(--infobg);color:var(--info)}
 h2{font-size:17px;margin:0 0 4px;font-weight:600}
 .hint{font-size:13px;color:var(--muted);margin:0 0 14px}
 .section{margin-bottom:18px}
 .chart-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
-.seg{display:inline-flex;background:#f1f2f4;border-radius:10px;padding:3px}
+.seg{display:inline-flex;background:var(--seg);border-radius:10px;padding:3px}
 .seg button{font:inherit;font-size:13px;border:0;background:none;padding:6px 12px;border-radius:8px;cursor:pointer;color:var(--muted)}
-.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08);font-weight:600}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08);font-weight:600}
 .chart{position:relative;margin-top:8px}
 .chart svg{display:block;width:100%}
 .chart text{font-size:11px;fill:var(--muted)}
 .legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-top:8px}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-.tip{position:absolute;pointer-events:none;background:#14161a;color:#fff;font-size:12px;padding:8px 10px;border-radius:8px;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.18);display:none;z-index:3}
+.tip{position:absolute;pointer-events:none;background:var(--tipbg);color:var(--tipfg);font-size:12px;padding:8px 10px;border-radius:8px;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.18);display:none;z-index:3}
 .tw{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
 th{font-size:12px;font-weight:600;color:var(--muted);text-align:right;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;text-transform:uppercase;letter-spacing:.03em}
@@ -67,7 +76,7 @@ th:first-child,td:first-child{text-align:left}
 tr:last-child td{border-bottom:0}
 tfoot td{font-weight:700;border-top:2px solid var(--line)}
 .cname{font-weight:600}.cmeta{font-size:12px;color:var(--muted)}
-.mini{display:inline-block;width:70px;height:6px;background:#eef0f3;border-radius:99px;vertical-align:middle;margin-left:8px;overflow:hidden}
+.mini{display:inline-block;width:70px;height:6px;background:var(--track);border-radius:99px;vertical-align:middle;margin-left:8px;overflow:hidden}
 .mini i{display:block;height:100%;background:var(--accent)}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
 ol.list{margin:0;padding-left:20px}ol.list li{margin-bottom:8px}
@@ -82,6 +91,17 @@ footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
   .wrap{padding:0}.print-range{display:block!important}
 }
 .print-range{display:none;font-size:13px;color:var(--muted)}
+.hdr-r{display:flex;gap:10px;align-items:center}
+.theme{font:inherit;font-size:13px;font-weight:500;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.sum2{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.sum2 b{color:var(--ink)}
+.steps{list-style:none;margin:0;padding:0}
+.steps li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.steps li:last-child{border-bottom:0}
+.steps .pill{margin-top:2px;flex:none}
+.steps b{font-weight:600}
+.steps .d{font-size:13px;color:var(--muted);margin-top:2px}
+@media print{.theme{display:none}}
 </style>
 </head>
 <body>
@@ -91,7 +111,7 @@ footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
       <div><h1>Canon SMB «Built to Grow» — Google Ads</h1>
       <div class="sub">Румыния · Болгария · Греция · Израиль &nbsp;·&nbsp; поиск и медийная реклама (КМС) &nbsp;·&nbsp; флайт 11 ноября — 31 декабря 2026</div></div>
     </div>
-    <div class="updated" id="updated">Данные обновлены: —</div>
+    <div class="hdr-r"><button class="theme" id="theme" aria-label="Сменить тему"></button><div class="updated" id="updated">Данные обновлены: —</div></div>
   </header>
 
   <div class="bar">
@@ -140,22 +160,22 @@ footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
 
   <div class="two section">
     <div class="card">
-      <h2>Что происходит</h2>
-      <ol class="list">
-        <li><b>Медийная реклама (КМС) почти не крутится.</b> На неё приходится ~95% плановых показов, но кампании стоят на оплате за клики с лимитом 0,30 € и узким таргетингом по названиям моделей.</li>
-        <li><b>Израиль не стартовал до 13 ноября</b> — кампания стояла на конверсиях, которые в аккаунте не настроены. Переведена на клики.</li>
-        <li><b>Поиск в Румынии</b> 12–13 ноября крутился по широким ключам (магазины, конкуренты). Ключи почищены 13 ноября.</li>
-        <li><b>После чистки</b> остались только точные модели — поиск почти перестал показываться.</li>
-      </ol>
+      <h2>Неделя запуска: что сделано</h2>
+      <p class="hint">Первая неделя флайта ушла на технический запуск и проверку настроек. Расход за неделю небольшой — неизрасходованный бюджет не потерян и распределяется на оставшиеся дни.</p>
+      <ul class="steps">
+        <li><span class="pill ok">готово</span><div><b>Израиль: запуск разблокирован</b><div class="d">Стратегия переведена с конверсий на клики — кампания начала проходить в показы. 13 ноября.</div></div></li>
+        <li><span class="pill ok">готово</span><div><b>Поиск, Румыния: очищена семантика</b><div class="d">Убраны широкие ключи, по которым приходили запросы магазинов и конкурентов. 13 ноября.</div></div></li>
+        <li><span class="pill ok">готово</span><div><b>Поиск, все страны: аудит ключевых слов</b><div class="d">Оставлены только запросы, относящиеся к принтерам Canon для бизнеса.</div></div></li>
+      </ul>
     </div>
     <div class="card">
-      <h2>Что делаем</h2>
-      <ol class="list">
-        <li>КМС — перевод на оплату за показы в рамках CPM медиаплана и аудитории малого бизнеса вместо названий моделей.</li>
-        <li>Поиск — расширяем семантику: бренд + категория на местном языке, офисные запросы, ReadIris; общий список минус-слов.</li>
-        <li>Ставки поиска по медиаплану: GR 0,65 €, RO 0,45 €, BG 0,25 €.</li>
-        <li>Дневные бюджеты выравниваем под план, чтобы догнать недобор первой недели.</li>
-      </ol>
+      <h2>Следующие шаги: выход на план</h2>
+      <p class="hint">Основной объём показов по медиаплану даёт медийная реклама — её и масштабируем.</p>
+      <ul class="steps">
+        <li><span class="pill info">в работе</span><div><b>КМС: закупка за показы</b><div class="d">Переход на оплату за 1000 показов в рамках CPM медиаплана и аудитории малого бизнеса (отрасли, офис, ремаркетинг).</div></div></li>
+        <li><span class="pill info">в работе</span><div><b>Поиск: расширение семантики</b><div class="d">Бренд + категория на местном языке, офисные запросы, ReadIris; общий список минус-слов.</div></div></li>
+        <li><span class="pill info">в работе</span><div><b>Ставки и бюджеты по медиаплану</b><div class="d">Цена клика в поиске: GR 0,65 €, RO 0,45 €, BG 0,25 €. Дневные бюджеты — с учётом остатка первой недели.</div></div></li>
+      </ul>
     </div>
   </div>
 
@@ -177,6 +197,19 @@ footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
 </div>
 <div class="tip" id="tip"></div>
 
+<script>
+(function(){
+  const root = document.documentElement, btn = document.getElementById('theme');
+  let saved = null; try { saved = localStorage.getItem('theme'); } catch (e) {}
+  const sys = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const apply = (t) => { root.dataset.theme = t; btn.textContent = t === 'dark' ? '☀ Светлая' : '☾ Тёмная'; window.dispatchEvent(new Event('resize')); };
+  apply(saved || sys);
+  let prev = null;
+  window.addEventListener('beforeprint', () => { prev = root.dataset.theme; root.dataset.theme = 'light'; window.dispatchEvent(new Event('resize')); });
+  window.addEventListener('afterprint', () => { if (prev) apply(prev); });
+  btn.onclick = () => { const t = root.dataset.theme === 'dark' ? 'light' : 'dark'; try { localStorage.setItem('theme', t); } catch (e) {} apply(t); };
+})();
+</script>
 <script src="data.js"></script>
 <script>
 (function(){
@@ -230,6 +263,18 @@ function compute() {
   return { camps, byC, tot, byDay, perDayPlan, n, rows };
 }
 
+function catchUp(R) {
+  const camps = R.camps, endD = D.flight.end;
+  const left = Math.round((new Date(endD) - new Date(lastDate)) / 864e5);
+  if (left <= 0 || !camps.length) return '';
+  const ids = new Set(camps.map(c => c.id));
+  const factAll = D.daily.filter(r => ids.has(r[1])).reduce((s, r) => s + r[2], 0);
+  const spentAll = D.daily.filter(r => ids.has(r[1])).reduce((s, r) => s + r[4], 0);
+  const planImp = camps.reduce((s, c) => s + c.impressions, 0), planBud = camps.reduce((s, c) => s + c.budget, 0);
+  const needImp = Math.max(0, planImp - factAll) / left, needBud = Math.max(0, planBud - spentAll) / left;
+  return `<div class="sum2">До конца флайта <b>${left}</b> ${left % 10 === 1 && left % 100 !== 11 ? 'день' : (left % 10 >= 2 && left % 10 <= 4 && (left % 100 < 10 || left % 100 >= 20)) ? 'дня' : 'дней'}. Чтобы выполнить план флайта целиком, нужно в среднем <b>${nf(needImp)}</b> показов в день при бюджете <b>${eur(needBud, 0)}</b> в день — в пределах медиаплана.</div>`;
+}
+
 function status(p) { return p >= 0.9 ? ['ok', 'в плане'] : p >= 0.5 ? ['warn', 'отстаём'] : ['bad', 'ниже плана']; }
 
 function render() {
@@ -248,7 +293,7 @@ function render() {
   // summary
   const ip = t.pImp ? t.imp / t.pImp : 0, cp = t.pClk ? t.clk / t.pClk : 0;
   el('summary').innerHTML = R.n === 0 ? 'За выбранный период данных нет.' :
-    `За <b>${period}</b> (${R.n} ${R.n === 1 ? 'день' : R.n < 5 ? 'дня' : 'дней'}) реклама получила <b>${nf(t.imp)}</b> показов при плане <b>${nf(t.pImp)}</b> — это <b>${pct(ip)}</b> плана, и <b>${nf(t.clk)}</b> кликов при плане <b>${nf(t.pClk)}</b> (${pct(cp)}). Потрачено <b>${eur(t.cost)}</b> из запланированных ${eur(t.pCost, 0)}.`;
+    `За <b>${period}</b> (${R.n} ${R.n === 1 ? 'день' : R.n < 5 ? 'дня' : 'дней'}) реклама получила <b>${nf(t.imp)}</b> показов при плане <b>${nf(t.pImp)}</b> — это <b>${pct(ip)}</b> плана, и <b>${nf(t.clk)}</b> кликов при плане <b>${nf(t.pClk)}</b> (${pct(cp)}). Потрачено <b>${eur(t.cost)}</b> из запланированных ${eur(t.pCost, 0)}.` + catchUp(R);
 
   // kpis
   const kpi = (label, v, note, p) => {
@@ -256,10 +301,11 @@ function render() {
     if (p != null) { const [cls, txt] = status(p); pill = `<span class="pill ${cls}">${txt}</span>`; bar = `<div class="prog"><i style="width:${Math.min(100, p * 100)}%"></i></div>`; }
     return `<div class="card"><div class="k-l"><span>${label}</span>${pill}</div><div class="k-v">${v}</div><div class="k-n">${note}</div>${bar}</div>`;
   };
+  const kpiNeutral = (label, v, note, p) => `<div class="card"><div class="k-l"><span>${label}</span><span class="pill info">остаток</span></div><div class="k-v">${v}</div><div class="k-n">${note}</div><div class="prog"><i style="width:${Math.min(100, p * 100)}%;background:var(--info)"></i></div></div>`;
   el('kpis').innerHTML =
     kpi('Показы', nf(t.imp), `план ${nf(t.pImp)} · ${pct(ip)}`, ip) +
     kpi('Клики', nf(t.clk), `план ${nf(t.pClk)} · ${pct(cp)}`, cp) +
-    kpi('Расход', eur(t.cost), `план ${eur(t.pCost, 0)}`, t.pCost ? t.cost / t.pCost : 0) +
+    kpiNeutral('Расход', eur(t.cost), `план ${eur(t.pCost, 0)} · остаток ${eur(Math.max(0, t.pCost - t.cost), 0)}`, t.pCost ? t.cost / t.pCost : 0) +
     kpi('CTR', t.imp ? pct(t.clk / t.imp) : '—', 'клики ÷ показы') +
     kpi('Цена клика', t.clk ? eur(t.cost / t.clk) : '—', 'расход ÷ клики') +
     kpi('CPM', t.imp ? eur(t.cost / t.imp * 1000) : '—', 'цена 1000 показов');
@@ -286,7 +332,7 @@ function drawChart(R) {
   const bw = (W - L - Rr) / data.length, y = v => T + (H - T - B) * (1 - v / max);
   const fmt = m === 'cost' ? (v) => eur(v, 0) : (v) => nf(v);
   let s = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="Динамика по дням">`;
-  for (let i = 0; i <= 4; i++) { const v = max / 4 * i, yy = y(v); s += `<line x1="${L}" x2="${W - Rr}" y1="${yy}" y2="${yy}" stroke="#eef0f3"/><text x="${L - 8}" y="${yy + 4}" text-anchor="end">${fmt(v)}</text>`; }
+  for (let i = 0; i <= 4; i++) { const v = max / 4 * i, yy = y(v); s += `<line x1="${L}" x2="${W - Rr}" y1="${yy}" y2="${yy}" stroke="var(--grid)"/><text x="${L - 8}" y="${yy + 4}" text-anchor="end">${fmt(v)}</text>`; }
   const step = Math.ceil(data.length / Math.max(1, Math.floor((W - L) / 60)));
   data.forEach((d, i) => {
     const x = L + i * bw, h = (H - T - B) - (y(d[m]) - T), w = Math.max(2, Math.min(48, bw * 0.6));
