@@ -6,6 +6,7 @@ window.REPORT_DATA = {
  "campaigns": [
   {"id": "Canon_RO_Search", "country": "Румыния", "type": "Поиск", "buying": "CPC", "rate": 0.45, "budget": 1400, "impressions": 51852, "clicks": 3111},
   {"id": "Canon_BG_Search", "country": "Болгария", "type": "Поиск", "buying": "CPC", "rate": 0.25, "budget": 2200, "impressions": 88000, "clicks": 8800},
+  {"id": "Canon_KZ_Search", "country": "Казахстан", "type": "Поиск", "buying": "CPC", "rate": 0.35, "budget": 1000, "impressions": 51948, "clicks": 2857, "start": "2026-11-17"},
   {"id": "Canon_Search_GR", "country": "Греция", "type": "Поиск", "buying": "CPC", "rate": 0.65, "budget": 1000, "impressions": 25641, "clicks": 1538},
   {"id": "Canon_RO_Display", "country": "Румыния", "type": "КМС", "buying": "CPM", "rate": 2.016, "budget": 2300, "impressions": 1140873, "clicks": 6845},
   {"id": "Canon_BG_Display", "country": "Болгария", "type": "КМС", "buying": "CPM", "rate": 2.24, "budget": 1800, "impressions": 803571, "clicks": 6429},
