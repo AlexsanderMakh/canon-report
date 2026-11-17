@@ -109,7 +109,7 @@ footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
   <header class="top">
     <div class="brand"><span class="dot"></span>
       <div><h1>Canon SMB «Built to Grow» — Google Ads</h1>
-      <div class="sub">Румыния · Болгария · Греция · Израиль &nbsp;·&nbsp; поиск и медийная реклама (КМС) &nbsp;·&nbsp; флайт 11 ноября — 31 декабря 2026</div></div>
+      <div class="sub">Румыния · Болгария · Греция · Израиль · Казахстан &nbsp;·&nbsp; поиск и медийная реклама (КМС) &nbsp;·&nbsp; флайт 11 ноября — 31 декабря 2026</div></div>
     </div>
     <div class="hdr-r"><button class="theme" id="theme" aria-label="Сменить тему"></button><div class="updated" id="updated">Данные обновлены: —</div></div>
   </header>
@@ -175,7 +175,7 @@ footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
         <li><span class="pill info">17–18 ноя</span><div><b>Контроль открутки КМС</b><div class="d">Проверяем, что медийные кампании набирают показы по новым аудиториям; при нехватке охвата — дополнительная группа с тематическим таргетингом.</div></div></li>
         <li><span class="pill info">17–18 ноя</span><div><b>Чистка поисковых запросов</b><div class="d">Ежедневный разбор отчёта «Поисковые фразы» по новым ключам, дополнение минус-слов.</div></div></li>
         <li><span class="pill info">с 19 ноя</span><div><b>Корректировка ставок</b><div class="d">Сверка фактической цены клика с медиапланом и подстройка лимитов.</div></div></li>
-        <li><span class="pill warn">ожидание</span><div><b>Казахстан: ждём подтверждения</b><div class="d">Страна есть в медиаплане, но запуск пока не подтверждён. Как только подтверждение придёт, кампания будет настроена и запущена по медиаплану, с теми же настройками таргетинга и семантики, что и в остальных странах.</div></div></li>
+        <li><span class="pill ok">запущено</span><div><b>Казахстан: поисковая кампания запущена 17 ноября</b><div class="d">После подтверждения клиента запущен поиск по медиаплану: бюджет 1 000 € (22 € в день до 31 декабря), лимит цены клика 0,35 €. 40 ключевых фраз (бренд Canon, модели из акции, офисные принтеры для малого бизнеса), 64 минус-слова, объявления на русском — по условиям акции на посадочной canon-kz.com.</div></div></li>
       </ul>
     </div>
   </div>
@@ -263,13 +263,15 @@ const types = [...new Set(D.campaigns.map(c => c.type))];
 function selCampaigns() { return D.campaigns.filter(c => (st.country === 'all' || c.country === st.country) && (st.type === 'all' || c.type === st.type)); }
 function rangeDays() { return dates.filter(d => d >= st.from && d <= st.to); }
 
+const cStart = c => c.start || D.flight.start;
+const cDays = c => Math.round((new Date(D.flight.end) - new Date(cStart(c))) / 864e5) + 1;
 function compute() {
   const camps = selCampaigns(), ids = new Set(camps.map(c => c.id)), days = rangeDays(), n = days.length;
   const rows = D.daily.filter(r => ids.has(r[1]) && r[0] >= st.from && r[0] <= st.to);
   const byC = camps.map(c => {
     const rr = rows.filter(r => r[1] === c.id);
     const imp = rr.reduce((s, r) => s + r[2], 0), clk = rr.reduce((s, r) => s + r[3], 0), cost = rr.reduce((s, r) => s + r[4], 0);
-    const k = n / FLIGHT_DAYS;
+    const k = days.filter(d => d >= cStart(c)).length / cDays(c);
     return { c, imp, clk, cost, pImp: c.impressions * k, pClk: c.clicks * k, pCost: c.budget * k };
   });
   const sum = (f) => byC.reduce((s, x) => s + x[f], 0);
@@ -278,7 +280,8 @@ function compute() {
     const rr = rows.filter(r => r[0] === d);
     return { d, impressions: rr.reduce((s, r) => s + r[2], 0), clicks: rr.reduce((s, r) => s + r[3], 0), cost: rr.reduce((s, r) => s + r[4], 0) };
   });
-  const perDayPlan = { impressions: camps.reduce((s, c) => s + c.impressions, 0) / FLIGHT_DAYS, clicks: camps.reduce((s, c) => s + c.clicks, 0) / FLIGHT_DAYS, cost: camps.reduce((s, c) => s + c.budget, 0) / FLIGHT_DAYS };
+  const act = camps.filter(c => cStart(c) <= st.to);
+  const perDayPlan = { impressions: act.reduce((s, c) => s + c.impressions / cDays(c), 0), clicks: act.reduce((s, c) => s + c.clicks / cDays(c), 0), cost: act.reduce((s, c) => s + c.budget / cDays(c), 0) };
   return { camps, byC, tot, byDay, perDayPlan, n, rows };
 }
 
