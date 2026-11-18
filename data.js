@@ -1,7 +1,7 @@
 // Данные отчёта из кабинета Primax (факт) и медиаплана Canon SMB 2026 (план).
 // daily: [дата, кампания, показы, клики, расход €]
 window.REPORT_DATA = {
- "updated": "2026-11-17",
+ "updated": "2026-11-18",
  "flight": {"start": "2026-11-11", "end": "2026-12-31"},
  "campaigns": [
   {"id": "Canon_RO_Search", "country": "Румыния", "type": "Поиск", "buying": "CPC", "rate": 0.45, "budget": 1400, "impressions": 51852, "clicks": 3111},
@@ -42,19 +42,27 @@ window.REPORT_DATA = {
   ["2026-11-14", "Canon_BG_Display", 0, 0, 0],
   ["2026-11-14", "Canon_Display_IL", 0, 0, 0],
   ["2026-11-14", "Canon_Display_GR", 0, 0, 0],
-  ["2026-11-15", "Canon_RO_Search", 1, 0, 0],
+  ["2026-11-15", "Canon_RO_Search", 1, 0, 0.0],
   ["2026-11-15", "Canon_BG_Search", 196, 9, 3.57],
   ["2026-11-15", "Canon_Search_GR", 46, 1, 0.54],
-  ["2026-11-15", "Canon_RO_Display", 9508, 148, 54.86],
-  ["2026-11-15", "Canon_BG_Display", 24341, 380, 39.94],
+  ["2026-11-15", "Canon_RO_Display", 9506, 146, 54.65],
+  ["2026-11-15", "Canon_BG_Display", 24341, 370, 38.97],
   ["2026-11-15", "Canon_Display_IL", 0, 0, 0],
   ["2026-11-15", "Canon_Display_GR", 0, 0, 0],
   ["2026-11-16", "Canon_RO_Search", 61, 3, 1.21],
   ["2026-11-16", "Canon_BG_Search", 206, 34, 13.67],
   ["2026-11-16", "Canon_Search_GR", 465, 32, 20.52],
-  ["2026-11-16", "Canon_RO_Display", 5401, 103, 50.33],
-  ["2026-11-16", "Canon_BG_Display", 18396, 278, 40.42],
+  ["2026-11-16", "Canon_RO_Display", 5401, 99, 47.72],
+  ["2026-11-16", "Canon_BG_Display", 18396, 270, 39.37],
   ["2026-11-16", "Canon_Display_IL", 0, 0, 0],
-  ["2026-11-16", "Canon_Display_GR", 28953, 1190, 40.06]
+  ["2026-11-16", "Canon_Display_GR", 28952, 1191, 40.11],
+  ["2026-11-17", "Canon_RO_Search", 68, 3, 1.29],
+  ["2026-11-17", "Canon_BG_Search", 502, 57, 22.55],
+  ["2026-11-17", "Canon_Search_GR", 425, 26, 16.21],
+  ["2026-11-17", "Canon_KZ_Search", 0, 0, 0],
+  ["2026-11-17", "Canon_RO_Display", 22789, 561, 52.31],
+  ["2026-11-17", "Canon_BG_Display", 21782, 315, 42.3],
+  ["2026-11-17", "Canon_Display_IL", 31248, 788, 48.07],
+  ["2026-11-17", "Canon_Display_GR", 43927, 1320, 62.04]
  ]
 };
