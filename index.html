@@ -141,7 +141,7 @@ footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
       <div class="grp no-print"><span class="lbl">Тип</span><span id="types"></span></div>
       <div class="spacer"></div>
       <div class="grp no-print">
-        <button class="btn ghost" id="dl-csv" title="Таблица по дням и кампаниям для Excel">⬇ Excel</button>
+        <button class="btn ghost" id="dl-csv" title="Таблица по кампаниям и по дням (Excel)">⬇ Excel</button>
         <button class="btn primary" id="dl-pdf" title="Сохранить страницу как PDF">⬇ PDF</button>
       </div>
       <div class="print-range" id="print-range"></div>
@@ -408,25 +408,61 @@ document.querySelectorAll('#metric button').forEach(b => b.onclick = () => { st.
 window.addEventListener('resize', () => drawChart(compute()));
 
 el('dl-pdf').onclick = () => window.print();
+function makeXlsx(sheets) {
+  const enc = new TextEncoder();
+  const esc = v => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const colL = i => { let s = ''; i++; while (i) { const m = (i - 1) % 26; s = String.fromCharCode(65 + m) + s; i = Math.floor((i - 1) / 26); } return s; };
+  const sheetXml = sh => {
+    const cols = sh.widths.map((w, i) => `<col min="${i + 1}" max="${i + 1}" width="${w}" customWidth="1"/>`).join('');
+    const rows = sh.rows.map((r, ri) => `<row r="${ri + 1}">` + r.map((v, ci) => {
+      if (v === '' || v == null) return '';
+      const ref = colL(ci) + (ri + 1), st = (sh.bold || []).includes(ri) ? ' s="1"' : '';
+      return typeof v === 'number' ? `<c r="${ref}"${st}><v>${v}</v></c>` : `<c r="${ref}" t="inlineStr"${st}><is><t>${esc(v)}</t></is></c>`;
+    }).join('') + '</row>').join('');
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><cols>${cols}</cols><sheetData>${rows}</sheetData></worksheet>`;
+  };
+  const files = [
+    ['[Content_Types].xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>${sheets.map((s, i) => `<Override PartName="/xl/worksheets/sheet${i + 1}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`).join('')}</Types>`],
+    ['_rels/.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`],
+    ['xl/workbook.xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets>${sheets.map((s, i) => `<sheet name="${esc(s.name)}" sheetId="${i + 1}" r:id="rId${i + 1}"/>`).join('')}</sheets></workbook>`],
+    ['xl/_rels/workbook.xml.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${sheets.map((s, i) => `<Relationship Id="rId${i + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet${i + 1}.xml"/>`).join('')}<Relationship Id="rId${sheets.length + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`],
+    ['xl/styles.xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font></fonts><fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="2"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`],
+    ...sheets.map((s, i) => [`xl/worksheets/sheet${i + 1}.xml`, sheetXml(s)])
+  ].map(([n, d]) => [enc.encode(n), enc.encode(d)]);
+  const crcT = []; for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; crcT[n] = c >>> 0; }
+  const crc = b => { let c = 0xFFFFFFFF; for (let i = 0; i < b.length; i++) c = crcT[(c ^ b[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; };
+  const parts = [], central = []; let off = 0;
+  const u16 = v => [v & 255, (v >>> 8) & 255], u32 = v => [v & 255, (v >>> 8) & 255, (v >>> 16) & 255, (v >>> 24) & 255];
+  files.forEach(([name, data]) => {
+    const c = crc(data), sz = data.length;
+    const lh = new Uint8Array([...u32(0x04034b50), ...u16(20), ...u16(0x0800), ...u16(0), ...u16(0), ...u16(0x21), ...u32(c), ...u32(sz), ...u32(sz), ...u16(name.length), ...u16(0)]);
+    parts.push(lh, name, data);
+    central.push(new Uint8Array([...u32(0x02014b50), ...u16(20), ...u16(20), ...u16(0x0800), ...u16(0), ...u16(0), ...u16(0x21), ...u32(c), ...u32(sz), ...u32(sz), ...u16(name.length), ...u16(0), ...u16(0), ...u16(0), ...u16(0), ...u32(0), ...u32(off)]), name);
+    off += lh.length + name.length + sz;
+  });
+  const cdSize = central.reduce((s, p) => s + p.length, 0);
+  const end = new Uint8Array([...u32(0x06054b50), ...u16(0), ...u16(0), ...u16(files.length), ...u16(files.length), ...u32(cdSize), ...u32(off), ...u16(0)]);
+  return new Blob([...parts, ...central, end], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+}
 el('dl-csv').onclick = () => {
-  const R = compute(), n = (v, d = 0) => (v || 0).toFixed(d).replace('.', ',');
-  const lines = [];
-  lines.push(`Canon SMB Built to Grow — Google Ads;Период: ${fd(st.from)} — ${fd(st.to)};Страна: ${st.country === 'all' ? 'все' : st.country};Тип: ${st.type === 'all' ? 'все' : st.type}`);
-  lines.push('');
-  lines.push('ИТОГ ПО КАМПАНИЯМ');
-  lines.push('Кампания;Страна;Тип;Показы;План показов;% плана;Клики;План кликов;CTR %;Цена клика €;Расход €;План расхода €');
-  R.byC.forEach(x => lines.push([x.c.id, x.c.country, x.c.type, x.imp, n(x.pImp), n(x.pImp ? x.imp / x.pImp * 100 : 0, 2), x.clk, n(x.pClk), n(x.imp ? x.clk / x.imp * 100 : 0, 2), n(x.clk ? x.cost / x.clk : 0, 2), n(x.cost, 2), n(x.pCost, 2)].join(';')));
+  const R = compute(), r2 = v => Math.round((v || 0) * 100) / 100, r0 = v => Math.round(v || 0);
   const t = R.tot;
-  lines.push(['Итого', '', '', t.imp, n(t.pImp), n(t.pImp ? t.imp / t.pImp * 100 : 0, 2), t.clk, n(t.pClk), n(t.imp ? t.clk / t.imp * 100 : 0, 2), n(t.clk ? t.cost / t.clk : 0, 2), n(t.cost, 2), n(t.pCost, 2)].join(';'));
-  lines.push('');
-  lines.push('ПО ДНЯМ');
-  lines.push('Дата;Кампания;Страна;Тип;Показы;Клики;Расход €');
-  R.rows.forEach(r => lines.push([fd(r[0]), r[1], C[r[1]].country, C[r[1]].type, r[2], r[3], n(r[4], 2)].join(';')));
-  const blob = new Blob([String.fromCharCode(0xFEFF) + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+  const sum = [
+    ['Canon SMB Built to Grow — Google Ads'],
+    [`Период: ${fd(st.from)} — ${fd(st.to)}`, `Страна: ${st.country === 'all' ? 'все' : st.country}`, `Тип: ${st.type === 'all' ? 'все' : st.type}`],
+    [],
+    ['Кампания', 'Страна', 'Тип', 'Показы', 'План показов', '% плана', 'Клики', 'План кликов', 'CTR %', 'Цена клика €', 'Расход €', 'План расхода €'],
+    ...R.byC.map(x => [x.c.id, x.c.country, x.c.type, x.imp, r0(x.pImp), r2(x.pImp ? x.imp / x.pImp * 100 : 0), x.clk, r0(x.pClk), r2(x.imp ? x.clk / x.imp * 100 : 0), r2(x.clk ? x.cost / x.clk : 0), r2(x.cost), r2(x.pCost)]),
+    ['Итого', '', '', t.imp, r0(t.pImp), r2(t.pImp ? t.imp / t.pImp * 100 : 0), t.clk, r0(t.pClk), r2(t.imp ? t.clk / t.imp * 100 : 0), r2(t.clk ? t.cost / t.clk : 0), r2(t.cost), r2(t.pCost)]
+  ];
+  const days = [['Дата', 'Кампания', 'Страна', 'Тип', 'Показы', 'Клики', 'Расход €'], ...R.rows.map(r => [fd(r[0]), r[1], C[r[1]].country, C[r[1]].type, r[2], r[3], r2(r[4])])];
+  const blob = makeXlsx([
+    { name: 'Итог', rows: sum, bold: [0, 3, sum.length - 1], widths: [24, 14, 10, 12, 14, 10, 10, 13, 9, 13, 11, 15] },
+    { name: 'По дням', rows: days, bold: [0], widths: [12, 22, 14, 10, 11, 9, 11] }
+  ]);
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-  a.download = `canon-report_${st.from}_${st.to}.csv`; document.body.appendChild(a); a.click(); a.remove();
+  a.download = `canon-report_${st.from}_${st.to}.xlsx`; document.body.appendChild(a); a.click(); a.remove();
 };
-
 render();
 })();
 </script>
