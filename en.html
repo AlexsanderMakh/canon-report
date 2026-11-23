@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Canon SMB “Built to Grow” — Google Ads report</title>
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7f9;--card:#fff;--ink:#14161a;--muted:#6b7280;--line:#e6e8ec;--track:#eef0f3;--grid:#eef0f3;--seg:#f1f2f4;--barbg:rgba(246,247,249,.92);
+  --accent:#d71920;--ok:#16a34a;--warn:#d97706;--bad:#dc2626;--info:#2563eb;
+  --okbg:#e8f7ee;--warnbg:#fff4e5;--badbg:#fdecec;--infobg:#e8f0fe;--tipbg:#14161a;--tipfg:#fff;
+  --r:14px;--sh:0 1px 2px rgba(16,24,40,.04),0 4px 16px rgba(16,24,40,.05);color-scheme:light;
+}
+:root[data-theme=dark]{
+  --bg:#0d0f12;--card:#16191e;--ink:#e8eaed;--muted:#9aa1ab;--line:#262a31;--track:#262a31;--grid:#22262c;--seg:#1e2228;--barbg:rgba(13,15,18,.9);
+  --accent:#ef3b42;--ok:#34d399;--warn:#fbbf24;--bad:#f87171;--info:#60a5fa;
+  --okbg:rgba(52,211,153,.14);--warnbg:rgba(251,191,36,.14);--badbg:rgba(248,113,113,.14);--infobg:rgba(96,165,250,.14);--tipbg:#e8eaed;--tipfg:#0d0f12;
+  --sh:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.25);color-scheme:dark;
+}
+body,.card,.summary,.controls{transition:background-color .2s,border-color .2s,color .2s}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 60px}
+header.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.dot{width:12px;height:36px;border-radius:4px;background:var(--accent)}
+h1{font-size:26px;line-height:1.2;margin:0;font-weight:700;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:13px;margin-top:4px}
+.updated{font-size:12px;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.bar{position:sticky;top:0;z-index:5;background:var(--barbg);backdrop-filter:blur(8px);padding:12px 0;margin:0 0 18px}
+.controls{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:14px;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+.grp{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lbl{font-size:12px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+input[type=date]{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--card);color:var(--ink)}
+.chip{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;cursor:pointer;color:var(--ink);transition:.15s}
+.chip:hover{border-color:var(--muted)}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.spacer{flex:1}
+.btn{font:inherit;font-size:14px;font-weight:600;border:0;border-radius:10px;padding:9px 14px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.primary:hover{filter:brightness(.95)}
+.btn.ghost{background:var(--card);border:1px solid var(--line);color:var(--ink)}
+.summary{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px;font-size:16px;margin-bottom:18px}
+.summary b{font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px}
+.k-l{font-size:13px;color:var(--muted);font-weight:500;display:flex;justify-content:space-between;gap:6px}
+.k-v{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.k-n{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.prog{height:6px;background:var(--track);border-radius:99px;margin-top:10px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.pill{white-space:nowrap;font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px}
+.pill.bad{background:var(--badbg);color:var(--bad)}.pill.warn{background:var(--warnbg);color:var(--warn)}.pill.ok{background:var(--okbg);color:var(--ok)}.pill.info{background:var(--infobg);color:var(--info)}
+h2{font-size:17px;margin:0 0 4px;font-weight:600}
+.hint{font-size:13px;color:var(--muted);margin:0 0 14px}
+.section{margin-bottom:18px}
+.chart-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.seg{display:inline-flex;background:var(--seg);border-radius:10px;padding:3px}
+.seg button{font:inherit;font-size:13px;border:0;background:none;padding:6px 12px;border-radius:8px;cursor:pointer;color:var(--muted)}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08);font-weight:600}
+.chart{position:relative;margin-top:8px}
+.chart svg{display:block;width:100%}
+.chart text{font-size:11px;fill:var(--muted)}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.tip{position:absolute;pointer-events:none;background:var(--tipbg);color:var(--tipfg);font-size:12px;padding:8px 10px;border-radius:8px;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.18);display:none;z-index:3}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+th{font-size:12px;font-weight:600;color:var(--muted);text-align:right;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;text-transform:uppercase;letter-spacing:.03em}
+td{padding:12px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+tr:last-child td{border-bottom:0}
+tfoot td{font-weight:700;border-top:2px solid var(--line)}
+.cname{font-weight:600}.cmeta{font-size:12px;color:var(--muted)}
+.mini{display:inline-block;width:70px;height:6px;background:var(--track);border-radius:99px;vertical-align:middle;margin-left:8px;overflow:hidden}
+.mini i{display:block;height:100%;background:var(--accent)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+ol.list{margin:0;padding-left:20px}ol.list li{margin-bottom:8px}
+details{margin-top:6px}summary{cursor:pointer;font-weight:600}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:12px 0 0;font-size:14px}dt{font-weight:600}dd{margin:0;color:var(--muted)}
+.empty{color:var(--muted);font-size:14px;padding:30px 0;text-align:center}
+footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
+@media (max-width:640px){.bar{position:static}h1{font-size:21px}.k-v{font-size:24px}.controls{padding:12px}}
+@media print{
+  body{background:#fff}.bar{position:static;padding:0}.controls .no-print,.seg,.btn{display:none!important}
+  .controls{box-shadow:none;border:0;padding:0}.card,.summary{box-shadow:none;break-inside:avoid}
+  .wrap{padding:0}.print-range{display:block!important}
+}
+.print-range{display:none;font-size:13px;color:var(--muted)}
+.hdr-r{display:flex;gap:10px;align-items:center}
+.theme{font:inherit;font-size:13px;font-weight:500;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.sum2{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.sum2 b{color:var(--ink)}
+.flight{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px 28px}
+.fl-l{font-size:13px;color:var(--muted);font-weight:500}
+.fl-v{font-size:24px;font-weight:700;letter-spacing:-.02em;margin:4px 0 2px;font-variant-numeric:tabular-nums}
+.fl-n{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.fl-n b{color:var(--ink);font-weight:600}
+.steps{list-style:none;margin:0;padding:0}
+.steps li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.steps li:last-child{border-bottom:0}
+.steps .pill{margin-top:2px;flex:none;min-width:74px;text-align:center}
+.steps b{font-weight:600}
+.steps .d{font-size:13px;color:var(--muted);margin-top:2px}
+.steps details.it{margin:0;flex:1}
+.steps details.it summary{font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.steps details.it summary::-webkit-details-marker{display:none}
+.steps details.it summary::after{content:"+";color:var(--muted);font-weight:500}
+.steps details.it[open] summary::after{content:"−"}
+.steps .d ul{margin:4px 0 0;padding-left:18px}
+.wh{display:none;font-size:14px;margin:14px 0 0}
+@media print{.wpane{display:block!important}.wpane[hidden]{display:block!important}.wh{display:block}#wtabs{display:none}.steps details.it .d{display:block}}
+@media print{.theme{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="dot"></span>
+      <div><h1>Canon SMB “Built to Grow” — Google Ads</h1>
+      <div class="sub">Romania · Bulgaria · Greece · Israel · Kazakhstan &nbsp;·&nbsp; Search and Display &nbsp;·&nbsp; flight 11 November — 31 December 2026</div></div>
+    </div>
+    <div class="hdr-r"><a class="theme" href="./" lang="ru" title="Русская версия">RU</a><button class="theme" id="theme" aria-label="Toggle theme"></button><div class="updated" id="updated">Data updated: —</div></div>
+  </header>
+
+  <div class="bar">
+    <div class="controls">
+      <div class="grp"><span class="lbl">Period</span>
+        <input type="date" id="from" aria-label="From date"><span>—</span><input type="date" id="to" aria-label="To date">
+      </div>
+      <div class="grp no-print" id="presets">
+        <button class="chip" data-p="all">Whole campaign</button>
+        <button class="chip" data-p="7">7 days</button>
+        <button class="chip" data-p="last">Last day</button>
+      </div>
+      <div class="grp no-print"><span class="lbl">Country</span><span id="countries"></span></div>
+      <div class="grp no-print"><span class="lbl">Type</span><span id="types"></span></div>
+      <div class="spacer"></div>
+      <div class="grp no-print">
+        <button class="btn ghost" id="dl-csv" title="Campaign and daily table (Excel)">⬇ Excel</button>
+        <button class="btn primary" id="dl-pdf" title="Save page as PDF">⬇ PDF</button>
+      </div>
+      <div class="print-range" id="print-range"></div>
+    </div>
+  </div>
+
+  <div class="summary" id="summary">—</div>
+
+  <div class="card section flight" id="flight"></div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="card section">
+    <div class="chart-head">
+      <div><h2>Daily performance</h2><p class="hint">Bars show daily actuals; the line shows the daily target from the media plan.</p></div>
+      <div class="seg" id="metric">
+        <button data-m="impressions" class="on">Impressions</button><button data-m="clicks">Clicks</button><button data-m="cost">Spend</button>
+      </div>
+    </div>
+    <div class="chart" id="chart"></div>
+    <div class="legend"><span><i style="background:var(--accent)"></i>Actual</span><span><i style="background:var(--ink);height:2px;vertical-align:3px"></i>Daily target</span></div>
+  </div>
+
+  <div class="card section">
+    <h2>Campaigns</h2><p class="hint">Targets are prorated to the selected days: campaign media plan ÷ 51 flight days × days in the period.</p>
+    <div class="tw"><table id="tbl">
+      <thead><tr><th>Campaign</th><th>Impressions</th><th>Impr. target</th><th>% of target</th><th>Clicks</th><th>Click target</th><th>CTR</th><th>CPC</th><th>Spend</th><th>Spend target</th></tr></thead>
+      <tbody></tbody><tfoot></tfoot>
+    </table></div>
+  </div>
+
+  <div class="card section" id="work">
+    <div class="chart-head">
+      <div><h2>Campaign activity log</h2><p class="hint">Click an item to see details.</p></div>
+      <div class="seg" id="wtabs"><button data-w="done" class="on">Done</button><button data-w="doing">In progress</button><button data-w="plan">Next steps</button></div>
+    </div>
+    <div class="wpane" data-w="done"><h3 class="wh">Done</h3><ul class="steps">
+        <li><span class="pill ok">23 Nov</span><details class="it"><summary>Bulgaria Search: wider reach</summary><div class="d">Added 24 broad keywords (copiers, document scanning, home and office printers, Black Friday offers, English-language queries); removed major electronics retailers from negative keywords so ads can show for “printer + store” searches; added protective negative keywords.</div></details></li>
+        <li><span class="pill ok">23 Nov</span><details class="it"><summary>Romania Search: CPC towards the €0.45 target</summary><div class="d">Average CPC since 16 November is €0.43; the max CPC limit was lowered from €0.45 to €0.40 so that the full-flight average (including launch days) reaches €0.45.</div></details></li>
+        <li><span class="pill ok">23 Nov</span><details class="it"><summary>Display: placement cleanup, 22–23 November</summary><div class="d">Excluded sites and apps with irrelevant traffic: Romania — 42, Israel — 21, Bulgaria — 17, Greece — 3.</div></details></li>
+        <li><span class="pill ok">22 Nov</span><details class="it"><summary>Kazakhstan: wider reach</summary><div class="d">Enabled Google search partners; ads now have 15 headlines instead of 10 (i-SENSYS and MAXIFY GX models added); added Russian-language keywords with matching negative keywords.</div></details></li>
+        <li><span class="pill ok">22 Nov</span><details class="it"><summary>Display: placement cleanup, 21–22 November</summary><div class="d">Excluded sites and apps with irrelevant traffic: Romania — 39, Bulgaria — 15, Israel — 15, Greece — 4. Search terms reviewed — no irrelevant queries found.</div></details></li>
+        <li><span class="pill ok">21 Nov</span><details class="it"><summary>Display: placement cleanup, 19–21 November</summary><div class="d">Excluded sites and apps with irrelevant traffic: Romania — 79, Israel — 48, Bulgaria — 36, Greece — 18. Local news and topical sites were kept. In Kazakhstan, a callout with the “%” sign that failed review was replaced.</div></details></li>
+        <li><span class="pill ok">18 Nov</span><details class="it"><summary>Ads shown only inside campaign countries</summary><div class="d">All campaigns now show ads only to people located in the campaign country, with no impressions outside it.</div></details></li>
+        <li><span class="pill ok">18 Nov</span><details class="it"><summary>Search RO, BG, GR: keyword expansion</summary><div class="d">Added broad printer and MFP keywords in local languages to reach media-plan impressions; enabled Google search partners in Romania; extended negative keywords.</div></details></li>
+        <li><span class="pill ok">17 Nov</span><details class="it"><summary>Kazakhstan: Search campaign launched</summary><div class="d">Per media plan: €1,000 budget, €0.35 max CPC. Ads in Kazakh and English using client-approved copy; audience — business users.</div></details></li>
+        <li><span class="pill ok">17 Nov</span><details class="it"><summary>Display Israel and Greece: wider reach</summary><div class="d">Added languages and small-business audiences, set max CPC limits. Israel started delivering impressions.</div></details></li>
+        <li><span class="pill ok">17 Nov</span><details class="it"><summary>Placement and search term cleanup</summary><div class="d">Excluded irrelevant Display sites and apps (BG, RO, GR), extended Search negative keywords. Added broader keywords to Bulgaria Search to build impressions.</div></details></li>
+        <li><span class="pill ok">16 Nov</span><details class="it"><summary>Optimisation of all campaigns</summary><div class="d"><ul><li>Display: new small-business and office audiences, wider demographics.</li><li>Search: new local-language keywords, negative keywords.</li><li>Ad copy and callouts checked against the offer terms.</li><li>Daily budgets recalculated to the media plan through 31 December.</li><li>Max CPC limits per media plan; network and language settings.</li></ul></div></details></li>
+        <li><span class="pill ok">13 Nov</span><details class="it"><summary>Launch week</summary><div class="d">Israel switched to a clicks strategy and unblocked; Romania Search keywords cleaned up; keyword audit in all countries.</div></details></li>
+      </ul></div>
+    <div class="wpane" data-w="doing" hidden><h3 class="wh">In progress</h3><ul class="steps">
+        <li><span class="pill info">daily</span><details class="it"><summary>Display delivery and placement monitoring</summary><div class="d">Checking impressions and CPM, excluding irrelevant sites.</div></details></li>
+        <li><span class="pill info">daily</span><details class="it"><summary>Search term review</summary><div class="d">Search terms report for new keywords, extending negative keywords.</div></details></li>
+        <li><span class="pill info">since 17 Nov</span><details class="it"><summary>Kazakhstan: delivery has not started</summary><div class="d">Ads and keywords are approved and budget is available; checking the Google Ads account status with the team.</div></details></li>
+      </ul></div>
+    <div class="wpane" data-w="plan" hidden><h3 class="wh">Next steps</h3><ul class="steps">
+
+        <li><span class="pill warn">25 Nov</span><details class="it"><summary>Bulgaria Search: results review</summary><div class="d">Checking whether the new keywords are enough to reach the impression and click targets.</div></details></li>
+        <li><span class="pill warn">later</span><details class="it"><summary>Reach campaign alongside current ones</summary><div class="d">To meet impression and reach targets together with clicks — subject to approval.</div></details></li>
+      </ul></div>
+  </div>
+
+  <div class="card section">
+    <details><summary>Metric definitions</summary>
+      <dl>
+        <dt>Impressions</dt><dd>how many times the ads were shown</dd>
+        <dt>Clicks</dt><dd>how many times people clicked the ad and went to the site</dd>
+        <dt>CTR</dt><dd>click-through rate: clicks ÷ impressions</dd>
+        <dt>CPC</dt><dd>average cost per click: spend ÷ clicks</dd>
+        <dt>CPM</dt><dd>cost per 1,000 impressions</dd>
+        <dt>Target</dt><dd>value from the Canon SMB 2026 media plan, prorated to the selected days</dd>
+        <dt>Display</dt><dd>Google Display Network: banner ads on websites and in apps</dd>
+      </dl>
+    </details>
+  </div>
+
+  <footer>Source: Primax account (Google Ads), Canon SMB Campaign 2026 media plan. Amounts in EUR.</footer>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+(function(){
+  const root = document.documentElement, btn = document.getElementById('theme');
+  let saved = null; try { saved = localStorage.getItem('theme'); } catch (e) {}
+  const sys = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const apply = (t) => { root.dataset.theme = t; btn.textContent = t === 'dark' ? '☀ Light' : '☾ Dark'; window.dispatchEvent(new Event('resize')); };
+  apply(saved || sys);
+  let prev = null;
+  window.addEventListener('beforeprint', () => { prev = root.dataset.theme; root.dataset.theme = 'light'; window.dispatchEvent(new Event('resize')); });
+  window.addEventListener('afterprint', () => { if (prev) apply(prev); });
+  btn.onclick = () => { const t = root.dataset.theme === 'dark' ? 'light' : 'dark'; try { localStorage.setItem('theme', t); } catch (e) {} apply(t); };
+})();
+</script>
+<script src="data.js"></script>
+<script>
+(function(){
+const D = window.REPORT_DATA;
+const TR = {'Румыния':'Romania','Болгария':'Bulgaria','Греция':'Greece','Израиль':'Israel','Казахстан':'Kazakhstan','Поиск':'Search','КМС':'Display'};
+D.campaigns.forEach(c => { c.country = TR[c.country] || c.country; c.type = TR[c.type] || c.type; });
+const dwE = n => n === 1 ? 'day' : 'days';
+const FLIGHT_DAYS = Math.round((new Date(D.flight.end) - new Date(D.flight.start)) / 864e5) + 1;
+const dates = [...new Set(D.daily.map(r => r[0]))].sort();
+const firstDate = dates[0], lastDate = dates[dates.length - 1];
+const C = Object.fromEntries(D.campaigns.map(c => [c.id, c]));
+const st = { from: firstDate, to: lastDate, country: 'all', type: 'all', metric: 'impressions' };
+
+const nf = (v, d = 0) => (v || 0).toLocaleString('en-GB', { minimumFractionDigits: d, maximumFractionDigits: d });
+const eur = (v, d = 2) => '€' + nf(v, d);
+const pct = (v) => (v > 0 && v < 0.01 ? nf(v * 100, 2) : nf(v * 100, 1)) + '%';
+const fd = (s) => { const [y, m, d] = s.split('-'); return `${d}.${m}.${y}`; };
+const fdShort = (s) => { const dt = new Date(s + 'T00:00:00Z'); return dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' }).replace('.', ''); };
+const addDays = (s, n) => { const d = new Date(s + 'T00:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const el = (id) => document.getElementById(id);
+
+el('updated').textContent = 'Data updated: ' + fd(D.updated);
+['from', 'to'].forEach(k => { el(k).min = firstDate; el(k).max = lastDate; });
+
+function chips(boxId, items, key) {
+  const box = el(boxId); box.innerHTML = '';
+  items.forEach(([v, label]) => {
+    const b = document.createElement('button'); b.className = 'chip' + (st[key] === v ? ' on' : ''); b.textContent = label;
+    b.onclick = () => { st[key] = v; render(); }; box.appendChild(b);
+  });
+}
+const countries = [...new Set(D.campaigns.map(c => c.country))];
+const types = [...new Set(D.campaigns.map(c => c.type))];
+
+function selCampaigns() { return D.campaigns.filter(c => (st.country === 'all' || c.country === st.country) && (st.type === 'all' || c.type === st.type)); }
+function rangeDays() { return dates.filter(d => d >= st.from && d <= st.to); }
+
+const cStart = c => c.start || D.flight.start;
+const cDays = c => Math.round((new Date(D.flight.end) - new Date(cStart(c))) / 864e5) + 1;
+function compute() {
+  const camps = selCampaigns(), ids = new Set(camps.map(c => c.id)), days = rangeDays(), n = days.length;
+  const rows = D.daily.filter(r => ids.has(r[1]) && r[0] >= st.from && r[0] <= st.to);
+  const byC = camps.map(c => {
+    const rr = rows.filter(r => r[1] === c.id);
+    const imp = rr.reduce((s, r) => s + r[2], 0), clk = rr.reduce((s, r) => s + r[3], 0), cost = rr.reduce((s, r) => s + r[4], 0);
+    const k = days.filter(d => d >= cStart(c)).length / cDays(c);
+    return { c, imp, clk, cost, pImp: c.impressions * k, pClk: c.clicks * k, pCost: c.budget * k };
+  });
+  const sum = (f) => byC.reduce((s, x) => s + x[f], 0);
+  const tot = { imp: sum('imp'), clk: sum('clk'), cost: sum('cost'), pImp: sum('pImp'), pClk: sum('pClk'), pCost: sum('pCost') };
+  const byDay = days.map(d => {
+    const rr = rows.filter(r => r[0] === d);
+    return { d, impressions: rr.reduce((s, r) => s + r[2], 0), clicks: rr.reduce((s, r) => s + r[3], 0), cost: rr.reduce((s, r) => s + r[4], 0) };
+  });
+  const act = camps.filter(c => cStart(c) <= st.to);
+  const perDayPlan = { impressions: act.reduce((s, c) => s + c.impressions / cDays(c), 0), clicks: act.reduce((s, c) => s + c.clicks / cDays(c), 0), cost: act.reduce((s, c) => s + c.budget / cDays(c), 0) };
+  return { camps, byC, tot, byDay, perDayPlan, n, rows };
+}
+
+function catchUp(R) {
+  const camps = R.camps, endD = D.flight.end;
+  const left = Math.round((new Date(endD) - new Date(lastDate)) / 864e5);
+  if (left <= 0 || !camps.length) return '';
+  const ids = new Set(camps.map(c => c.id));
+  const factAll = D.daily.filter(r => ids.has(r[1])).reduce((s, r) => s + r[2], 0);
+  const spentAll = D.daily.filter(r => ids.has(r[1])).reduce((s, r) => s + r[4], 0);
+  const planImp = camps.reduce((s, c) => s + c.impressions, 0), planBud = camps.reduce((s, c) => s + c.budget, 0);
+  const needImp = Math.max(0, planImp - factAll) / left, needBud = Math.max(0, planBud - spentAll) / left;
+  return `<div class="sum2"><b>${left}</b> ${dwE(left)} left in the flight. To deliver the full flight plan, we need on average <b>${nf(needImp)}</b> impressions per day with a daily budget of <b>${eur(needBud, 0)}</b> — within the media plan.</div>`;
+}
+
+function flightBox() {
+  const camps = selCampaigns(), ids = new Set(camps.map(c => c.id));
+  const total = FLIGHT_DAYS;
+  const passed = Math.min(total, Math.round((new Date(lastDate) - new Date(D.flight.start)) / 864e5) + 1);
+  const left = Math.max(0, total - passed);
+  const budget = camps.reduce((s, c) => s + c.budget, 0);
+  const spent = D.daily.filter(r => ids.has(r[1])).reduce((s, r) => s + r[4], 0);
+  const rest = Math.max(0, budget - spent);
+  const dw = dwE;
+  const tp = passed / total, bp = budget ? spent / budget : 0;
+  el('flight').innerHTML =
+    `<div><div class="fl-l">Time left in flight</div><div class="fl-v">${left} ${dw(left)}</div><div class="fl-n"><b>${passed}</b> of ${total} days passed · ${fd(D.flight.start)} — ${fd(D.flight.end)}</div><div class="prog"><i style="width:${Math.min(100, tp * 100)}%;background:var(--info)"></i></div></div>` +
+    `<div><div class="fl-l">Flight budget</div><div class="fl-v">${eur(rest, 0)} left</div><div class="fl-n">spent <b>${eur(spent, 0)}</b> of ${eur(budget, 0)} · ${pct(bp)}</div><div class="prog"><i style="width:${Math.min(100, bp * 100)}%"></i></div></div>`;
+}
+
+function status(p) { return p >= 0.9 ? ['ok', 'on track'] : p >= 0.5 ? ['warn', 'behind'] : ['bad', 'below target']; }
+
+function render() {
+  el('from').value = st.from; el('to').value = st.to;
+  chips('countries', [['all', 'All'], ...countries.map(c => [c, c])], 'country');
+  chips('types', [['all', 'All'], ...types.map(t => [t, t])], 'type');
+  document.querySelectorAll('#metric button').forEach(b => b.classList.toggle('on', b.dataset.m === st.metric));
+  document.querySelectorAll('#presets .chip').forEach(b => b.classList.remove('on'));
+  if (st.from === firstDate && st.to === lastDate) document.querySelector('[data-p=all]').classList.add('on');
+  else if (st.from === st.to && st.to === lastDate) document.querySelector('[data-p=last]').classList.add('on');
+
+  const R = compute(), t = R.tot;
+  const period = st.from === st.to ? fd(st.from) : `${fd(st.from)} — ${fd(st.to)}`;
+  el('print-range').textContent = `Period: ${period} · days: ${R.n}`;
+
+  // summary
+  const ip = t.pImp ? t.imp / t.pImp : 0, cp = t.pClk ? t.clk / t.pClk : 0;
+  el('summary').innerHTML = R.n === 0 ? 'No data for the selected period.' :
+    `For <b>${period}</b> (${R.n} ${dwE(R.n)}) the ads delivered <b>${nf(t.imp)}</b> impressions against a target of <b>${nf(t.pImp)}</b> — <b>${pct(ip)}</b> of target — and <b>${nf(t.clk)}</b> clicks against <b>${nf(t.pClk)}</b> (${pct(cp)}). Spend: <b>${eur(t.cost)}</b> of the planned ${eur(t.pCost, 0)}.` + catchUp(R);
+
+  // kpis
+  const kpi = (label, v, note, p) => {
+    let pill = '', bar = '';
+    if (p != null) { const [cls, txt] = status(p); pill = `<span class="pill ${cls}">${txt}</span>`; bar = `<div class="prog"><i style="width:${Math.min(100, p * 100)}%"></i></div>`; }
+    return `<div class="card"><div class="k-l"><span>${label}</span>${pill}</div><div class="k-v">${v}</div><div class="k-n">${note}</div>${bar}</div>`;
+  };
+  const kpiNeutral = (label, v, note, p) => `<div class="card"><div class="k-l"><span>${label}</span><span class="pill info">remaining</span></div><div class="k-v">${v}</div><div class="k-n">${note}</div><div class="prog"><i style="width:${Math.min(100, p * 100)}%;background:var(--info)"></i></div></div>`;
+  el('kpis').innerHTML =
+    kpi('Impressions', nf(t.imp), `target ${nf(t.pImp)} · ${pct(ip)}`, ip) +
+    kpi('Clicks', nf(t.clk), `target ${nf(t.pClk)} · ${pct(cp)}`, cp) +
+    kpiNeutral('Spend', eur(t.cost), `target ${eur(t.pCost, 0)} · remaining ${eur(Math.max(0, t.pCost - t.cost), 0)}`, t.pCost ? t.cost / t.pCost : 0) +
+    kpi('CTR', t.imp ? pct(t.clk / t.imp) : '—', 'clicks ÷ impressions') +
+    kpi('CPC', t.clk ? eur(t.cost / t.clk) : '—', 'spend ÷ clicks') +
+    kpi('CPM', t.imp ? eur(t.cost / t.imp * 1000) : '—', 'cost per 1,000 impressions');
+
+  flightBox();
+  drawChart(R);
+
+  // table
+  const tb = document.querySelector('#tbl tbody'), tf = document.querySelector('#tbl tfoot');
+  tb.innerHTML = R.byC.map(x => {
+    const p = x.pImp ? x.imp / x.pImp : 0;
+    return `<tr><td><div class="cname">${x.c.id}</div><div class="cmeta">${x.c.country} · ${x.c.type}</div></td>
+      <td>${nf(x.imp)}</td><td>${nf(x.pImp)}</td><td>${pct(p)}<span class="mini"><i style="width:${Math.min(100, p * 100)}%"></i></span></td>
+      <td>${nf(x.clk)}</td><td>${nf(x.pClk)}</td><td>${x.imp ? pct(x.clk / x.imp) : '—'}</td><td>${x.clk ? eur(x.cost / x.clk) : '—'}</td>
+      <td>${eur(x.cost)}</td><td>${eur(x.pCost, 0)}</td></tr>`;
+  }).join('');
+  tf.innerHTML = `<tr><td>Total</td><td>${nf(t.imp)}</td><td>${nf(t.pImp)}</td><td>${pct(ip)}</td><td>${nf(t.clk)}</td><td>${nf(t.pClk)}</td><td>${t.imp ? pct(t.clk / t.imp) : '—'}</td><td>${t.clk ? eur(t.cost / t.clk) : '—'}</td><td>${eur(t.cost)}</td><td>${eur(t.pCost, 0)}</td></tr>`;
+}
+
+function drawChart(R) {
+  const box = el('chart'), m = st.metric, data = R.byDay, plan = R.perDayPlan[m];
+  if (!data.length) { box.innerHTML = '<div class="empty">No data for the period</div>'; return; }
+  const W = box.clientWidth || 800, H = 260, L = 56, Rr = 12, T = 12, B = 28;
+  const max = Math.max(plan, ...data.map(d => d[m])) * 1.1 || 1;
+  const bw = (W - L - Rr) / data.length, y = v => T + (H - T - B) * (1 - v / max);
+  const fmt = m === 'cost' ? (v) => eur(v, 0) : (v) => nf(v);
+  let s = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="Daily performance">`;
+  for (let i = 0; i <= 4; i++) { const v = max / 4 * i, yy = y(v); s += `<line x1="${L}" x2="${W - Rr}" y1="${yy}" y2="${yy}" stroke="var(--grid)"/><text x="${L - 8}" y="${yy + 4}" text-anchor="end">${fmt(v)}</text>`; }
+  const step = Math.ceil(data.length / Math.max(1, Math.floor((W - L) / 60)));
+  data.forEach((d, i) => {
+    const x = L + i * bw, h = (H - T - B) - (y(d[m]) - T), w = Math.max(2, Math.min(48, bw * 0.6));
+    s += `<rect data-i="${i}" x="${x + (bw - w) / 2}" y="${y(d[m])}" width="${w}" height="${Math.max(d[m] > 0 ? 2 : 0, h)}" rx="4" fill="var(--accent)"/>`;
+    if (i % step === 0) s += `<text x="${x + bw / 2}" y="${H - 8}" text-anchor="middle">${fdShort(d.d)}</text>`;
+    s += `<rect class="hit" data-i="${i}" x="${x}" y="${T}" width="${bw}" height="${H - T - B}" fill="transparent"/>`;
+  });
+  s += `<line x1="${L}" x2="${W - Rr}" y1="${y(plan)}" y2="${y(plan)}" stroke="var(--ink)" stroke-width="2" stroke-dasharray="6 4"/>`;
+  s += `<text x="${W - Rr}" y="${y(plan) - 6}" text-anchor="end" style="fill:var(--ink);font-weight:600">target ${fmt(plan)}/day</text></svg>`;
+  box.innerHTML = s;
+  const tip = el('tip');
+  box.querySelectorAll('.hit').forEach(h => {
+    h.addEventListener('mousemove', (e) => {
+      const d = data[+h.dataset.i];
+      tip.innerHTML = `<b>${fd(d.d)}</b><br>Impressions: ${nf(d.impressions)} (target ${nf(R.perDayPlan.impressions)})<br>Clicks: ${nf(d.clicks)}<br>Spend: ${eur(d.cost)}`;
+      tip.style.display = 'block';
+      tip.style.left = Math.min(e.pageX + 14, window.innerWidth - 240) + 'px'; tip.style.top = (e.pageY + 14) + 'px';
+    });
+    h.addEventListener('mouseleave', () => tip.style.display = 'none');
+  });
+}
+
+// events
+el('from').onchange = (e) => { st.from = e.target.value || firstDate; if (st.from > st.to) st.to = st.from; render(); };
+el('to').onchange = (e) => { st.to = e.target.value || lastDate; if (st.to < st.from) st.from = st.to; render(); };
+document.querySelectorAll('#presets .chip').forEach(b => b.onclick = () => {
+  const p = b.dataset.p;
+  if (p === 'all') { st.from = firstDate; st.to = lastDate; }
+  if (p === '7') { st.to = lastDate; st.from = addDays(lastDate, -6) < firstDate ? firstDate : addDays(lastDate, -6); }
+  if (p === 'last') { st.from = st.to = lastDate; }
+  render();
+});
+document.querySelectorAll('#metric button').forEach(b => b.onclick = () => { st.metric = b.dataset.m; render(); });
+window.addEventListener('resize', () => drawChart(compute()));
+
+el('dl-pdf').onclick = () => window.print();
+function makeXlsx(sheets) {
+  const enc = new TextEncoder();
+  const esc = v => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const colL = i => { let s = ''; i++; while (i) { const m = (i - 1) % 26; s = String.fromCharCode(65 + m) + s; i = Math.floor((i - 1) / 26); } return s; };
+  const sheetXml = sh => {
+    const cols = sh.widths.map((w, i) => `<col min="${i + 1}" max="${i + 1}" width="${w}" customWidth="1"/>`).join('');
+    const rows = sh.rows.map((r, ri) => `<row r="${ri + 1}">` + r.map((v, ci) => {
+      if (v === '' || v == null) return '';
+      const ref = colL(ci) + (ri + 1), st = (sh.bold || []).includes(ri) ? ' s="1"' : '';
+      return typeof v === 'number' ? `<c r="${ref}"${st}><v>${v}</v></c>` : `<c r="${ref}" t="inlineStr"${st}><is><t>${esc(v)}</t></is></c>`;
+    }).join('') + '</row>').join('');
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><cols>${cols}</cols><sheetData>${rows}</sheetData></worksheet>`;
+  };
+  const files = [
+    ['[Content_Types].xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>${sheets.map((s, i) => `<Override PartName="/xl/worksheets/sheet${i + 1}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`).join('')}</Types>`],
+    ['_rels/.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`],
+    ['xl/workbook.xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets>${sheets.map((s, i) => `<sheet name="${esc(s.name)}" sheetId="${i + 1}" r:id="rId${i + 1}"/>`).join('')}</sheets></workbook>`],
+    ['xl/_rels/workbook.xml.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${sheets.map((s, i) => `<Relationship Id="rId${i + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet${i + 1}.xml"/>`).join('')}<Relationship Id="rId${sheets.length + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`],
+    ['xl/styles.xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font></fonts><fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="2"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`],
+    ...sheets.map((s, i) => [`xl/worksheets/sheet${i + 1}.xml`, sheetXml(s)])
+  ].map(([n, d]) => [enc.encode(n), enc.encode(d)]);
+  const crcT = []; for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; crcT[n] = c >>> 0; }
+  const crc = b => { let c = 0xFFFFFFFF; for (let i = 0; i < b.length; i++) c = crcT[(c ^ b[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; };
+  const parts = [], central = []; let off = 0;
+  const u16 = v => [v & 255, (v >>> 8) & 255], u32 = v => [v & 255, (v >>> 8) & 255, (v >>> 16) & 255, (v >>> 24) & 255];
+  files.forEach(([name, data]) => {
+    const c = crc(data), sz = data.length;
+    const lh = new Uint8Array([...u32(0x04034b50), ...u16(20), ...u16(0x0800), ...u16(0), ...u16(0), ...u16(0x21), ...u32(c), ...u32(sz), ...u32(sz), ...u16(name.length), ...u16(0)]);
+    parts.push(lh, name, data);
+    central.push(new Uint8Array([...u32(0x02014b50), ...u16(20), ...u16(20), ...u16(0x0800), ...u16(0), ...u16(0), ...u16(0x21), ...u32(c), ...u32(sz), ...u32(sz), ...u16(name.length), ...u16(0), ...u16(0), ...u16(0), ...u16(0), ...u32(0), ...u32(off)]), name);
+    off += lh.length + name.length + sz;
+  });
+  const cdSize = central.reduce((s, p) => s + p.length, 0);
+  const end = new Uint8Array([...u32(0x06054b50), ...u16(0), ...u16(0), ...u16(files.length), ...u16(files.length), ...u32(cdSize), ...u32(off), ...u16(0)]);
+  return new Blob([...parts, ...central, end], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+}
+el('dl-csv').onclick = () => {
+  const R = compute(), r2 = v => Math.round((v || 0) * 100) / 100, r0 = v => Math.round(v || 0);
+  const t = R.tot;
+  const sum = [
+    ['Canon SMB Built to Grow — Google Ads'],
+    [`Period: ${fd(st.from)} — ${fd(st.to)}`, `Country: ${st.country === 'all' ? 'all' : st.country}`, `Type: ${st.type === 'all' ? 'all' : st.type}`],
+    [],
+    ['Campaign', 'Country', 'Type', 'Impressions', 'Impr. target', '% of target', 'Clicks', 'Click target', 'CTR %', 'CPC €', 'Spend €', 'Spend target €'],
+    ...R.byC.map(x => [x.c.id, x.c.country, x.c.type, x.imp, r0(x.pImp), r2(x.pImp ? x.imp / x.pImp * 100 : 0), x.clk, r0(x.pClk), r2(x.imp ? x.clk / x.imp * 100 : 0), r2(x.clk ? x.cost / x.clk : 0), r2(x.cost), r2(x.pCost)]),
+    ['Total', '', '', t.imp, r0(t.pImp), r2(t.pImp ? t.imp / t.pImp * 100 : 0), t.clk, r0(t.pClk), r2(t.imp ? t.clk / t.imp * 100 : 0), r2(t.clk ? t.cost / t.clk : 0), r2(t.cost), r2(t.pCost)]
+  ];
+  const days = [['Date', 'Campaign', 'Country', 'Type', 'Impressions', 'Clicks', 'Spend €'], ...R.rows.map(r => [fd(r[0]), r[1], C[r[1]].country, C[r[1]].type, r[2], r[3], r2(r[4])])];
+  const blob = makeXlsx([
+    { name: 'Summary', rows: sum, bold: [0, 3, sum.length - 1], widths: [24, 14, 10, 12, 14, 10, 10, 13, 9, 13, 11, 15] },
+    { name: 'Daily', rows: days, bold: [0], widths: [12, 22, 14, 10, 11, 9, 11] }
+  ]);
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `canon-report_${st.from}_${st.to}.xlsx`; document.body.appendChild(a); a.click(); a.remove();
+};
+render();
+})();
+</script>
+<script>
+(function(){var t=document.getElementById('wtabs');if(!t)return;t.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;t.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});document.querySelectorAll('.wpane').forEach(function(p){p.hidden=p.dataset.w!==b.dataset.w})});
+window.addEventListener('beforeprint',function(){document.querySelectorAll('details.it').forEach(function(d){d.dataset.o=d.open;d.open=true})});
+window.addEventListener('afterprint',function(){document.querySelectorAll('details.it').forEach(function(d){d.open=d.dataset.o==='true'})});})();
+</script>
+</body>
+</html>
