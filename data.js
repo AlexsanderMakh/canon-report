@@ -1,7 +1,7 @@
 // Данные отчёта из кабинета Primax (факт) и медиаплана Canon SMB 2026 (план).
 // daily: [дата, кампания, показы, клики, расход €]
 window.REPORT_DATA = {
- "updated": "2026-11-24",
+ "updated": "2026-11-25",
  "flight": {"start": "2026-11-11", "end": "2026-12-31"},
  "campaigns": [
   {"id": "Canon_RO_Search", "country": "Румыния", "type": "Поиск", "buying": "CPC", "rate": 0.45, "budget": 1400, "impressions": 51852, "clicks": 3111},
@@ -108,9 +108,17 @@ window.REPORT_DATA = {
   ["2026-11-23", "Canon_BG_Search", 306, 30, 11.3],
   ["2026-11-23", "Canon_Search_GR", 533, 41, 19.9],
   ["2026-11-23", "Canon_KZ_Search", 31, 0, 0],
-  ["2026-11-23", "Canon_RO_Display", 46852, 1299, 53.24],
-  ["2026-11-23", "Canon_BG_Display", 28006, 732, 34.65],
-  ["2026-11-23", "Canon_Display_IL", 15957, 370, 16.59],
-  ["2026-11-23", "Canon_Display_GR", 22103, 477, 23.09]
+  ["2026-11-23", "Canon_RO_Display", 46852, 1267, 51.93],
+  ["2026-11-23", "Canon_BG_Display", 28004, 725, 34.42],
+  ["2026-11-23", "Canon_Display_IL", 15956, 366, 16.44],
+  ["2026-11-23", "Canon_Display_GR", 22102, 464, 22.64],
+  ["2026-11-24", "Canon_RO_Search", 1127, 71, 27.13],
+  ["2026-11-24", "Canon_BG_Search", 84, 7, 2.82],
+  ["2026-11-24", "Canon_Search_GR", 594, 46, 25.22],
+  ["2026-11-24", "Canon_KZ_Search", 40, 1, 0.45],
+  ["2026-11-24", "Canon_RO_Display", 36919, 1055, 54.19],
+  ["2026-11-24", "Canon_BG_Display", 18659, 648, 30.33],
+  ["2026-11-24", "Canon_Display_IL", 21791, 470, 30.41],
+  ["2026-11-24", "Canon_Display_GR", 26523, 609, 41.54]
  ]
 };
