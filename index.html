@@ -46,10 +46,10 @@ input[type=date]{font:inherit;font-size:14px;border:1px solid var(--line);border
 .btn.ghost{background:var(--card);border:1px solid var(--line);color:var(--ink)}
 .summary{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px;font-size:16px;margin-bottom:18px}
 .summary b{font-weight:600}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}
+.kpis{margin-bottom:18px}.kpi-main{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.kpi-sub{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}.kpi-sub .card{padding:12px 18px}.kpi-sub .k-v{font-size:21px;margin:4px 0 0}.kpi-main .card{display:flex;flex-direction:column}.kpi-main .prog{margin-top:auto}.kpi-main .k-n{margin-bottom:10px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px}
-.k-l{font-size:13px;color:var(--muted);font-weight:500;display:flex;justify-content:space-between;gap:6px}
-.k-v{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.k-l{font-size:13px;color:var(--muted);font-weight:500;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.k-l>span:first-child{min-width:0;line-height:1.35}.k-l .pill{flex:none}
+.k-v{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .k-n{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 .prog{height:6px;background:var(--track);border-radius:99px;margin-top:10px;overflow:hidden}
 .prog i{display:block;height:100%;background:var(--accent);border-radius:99px}
@@ -84,6 +84,8 @@ details{margin-top:6px}summary{cursor:pointer;font-weight:600}
 dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:12px 0 0;font-size:14px}dt{font-weight:600}dd{margin:0;color:var(--muted)}
 .empty{color:var(--muted);font-size:14px;padding:30px 0;text-align:center}
 footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
+@media (max-width:960px){.kpi-main{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.kpi-main{grid-template-columns:minmax(0,1fr)}.kpi-sub{gap:10px}.kpi-sub .card{padding:10px 12px}.kpi-sub .k-v{font-size:18px}.kpi-sub .k-n{font-size:11px}}
 @media (max-width:640px){.bar{position:static}h1{font-size:21px}.k-v{font-size:24px}.controls{padding:12px}}
 @media print{
   body{background:#fff}.bar{position:static;padding:0}.controls .no-print,.seg,.btn{display:none!important}
@@ -168,7 +170,7 @@ footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
   <div class="card section">
     <h2>Кампании</h2><p class="hint">План пересчитан на выбранные дни: медиаплан кампании ÷ 51 день флайта × число дней в периоде.</p>
     <div class="tw"><table id="tbl">
-      <thead><tr><th>Кампания</th><th>Показы</th><th>План показов</th><th>% плана</th><th>Клики</th><th>План кликов</th><th>Недейств. клики</th><th>CTR</th><th>Цена клика</th><th>Расход</th><th>План расхода</th></tr></thead>
+      <thead><tr><th>Кампания</th><th>Показы</th><th>План показов</th><th>% плана</th><th>Клики</th><th>План кликов</th><th>Фродовые клики</th><th>CTR</th><th>Цена клика</th><th>Расход</th><th>План расхода</th></tr></thead>
       <tbody></tbody><tfoot></tfoot>
     </table></div>
   </div>
@@ -213,7 +215,7 @@ footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
       <dl>
         <dt>Показы</dt><dd>сколько раз реклама была показана людям</dd>
         <dt>Клики</dt><dd>сколько раз по рекламе нажали и перешли на сайт</dd>
-        <dt>Недействительные клики</dt><dd>клики, которые система защиты Google от недействительного трафика распознала как фродовые (боты, автоклики, случайные и повторные нажатия) и отсеяла автоматически. Они не входят в клики отчёта и не оплачиваются. Дополнительно мы вручную исключаем площадки КМС с подозрительно высоким CTR.</dd>
+        <dt>Фродовые клики</dt><dd>клики, которые система защиты Google от недействительного трафика распознала как фродовые (боты, автоклики, случайные и повторные нажатия) и отсеяла автоматически. Они не входят в клики отчёта и не оплачиваются. Дополнительно мы вручную исключаем площадки КМС с подозрительно высоким CTR.</dd>
         <dt>CTR</dt><dd>доля кликов от показов: клики ÷ показы</dd>
         <dt>Цена клика</dt><dd>средняя стоимость одного перехода: расход ÷ клики</dd>
         <dt>CPM</dt><dd>стоимость 1000 показов</dd>
@@ -349,16 +351,18 @@ function render() {
     if (p != null) { const [cls, txt] = status(p); pill = `<span class="pill ${cls}">${txt}</span>`; bar = `<div class="prog"><i style="width:${Math.min(100, p * 100)}%"></i></div>`; }
     return `<div class="card"><div class="k-l"><span>${label}</span>${pill}</div><div class="k-v">${v}</div><div class="k-n">${note}</div>${bar}</div>`;
   };
-  const kpiInv = (label, v, note) => `<div class="card"><div class="k-l"><span>${label}</span><span class="pill ok">антифрод</span></div><div class="k-v">${v}</div><div class="k-n">${note}</div></div>`;
+  const kpiInv = (label, v, note, p) => `<div class="card"><div class="k-l"><span>${label}</span><span class="pill ok">антифрод</span></div><div class="k-v">${v}</div><div class="k-n">${note}</div><div class="prog"><i style="width:${Math.min(100, p * 100)}%;background:var(--ok)"></i></div></div>`;
   const kpiNeutral = (label, v, note, p) => `<div class="card"><div class="k-l"><span>${label}</span><span class="pill info">остаток</span></div><div class="k-v">${v}</div><div class="k-n">${note}</div><div class="prog"><i style="width:${Math.min(100, p * 100)}%;background:var(--info)"></i></div></div>`;
   el('kpis').innerHTML =
+    '<div class="kpi-main">' +
     kpi('Показы', nf(t.imp), `план ${nf(t.pImp)} · ${pct(ip)}`, ip) +
     kpi('Клики', nf(t.clk), `план ${nf(t.pClk)} · ${pct(cp)}`, cp) +
-    kpiInv('Недействительные клики', nf(t.inv), `отсеяно Google, не оплачены · ${(t.clk + t.inv) ? pct(t.inv / (t.clk + t.inv)) : '—'} всех кликов`) +
     kpiNeutral('Расход', eur(t.cost), `план ${eur(t.pCost, 0)} · остаток ${eur(Math.max(0, t.pCost - t.cost), 0)}`, t.pCost ? t.cost / t.pCost : 0) +
+    kpiInv('Фродовые клики', nf(t.inv), `отсеяно Google и не оплачено · ${(t.clk + t.inv) ? pct(t.inv / (t.clk + t.inv)) : '—'} всех кликов`, (t.clk + t.inv) ? t.inv / (t.clk + t.inv) : 0) +
+    '</div><div class="kpi-sub">' +
     kpi('CTR', t.imp ? pct(t.clk / t.imp) : '—', 'клики ÷ показы') +
     kpi('Цена клика', t.clk ? eur(t.cost / t.clk) : '—', 'расход ÷ клики') +
-    kpi('CPM', t.imp ? eur(t.cost / t.imp * 1000) : '—', 'цена 1000 показов');
+    kpi('CPM', t.imp ? eur(t.cost / t.imp * 1000) : '—', 'цена 1000 показов') + '</div>';
 
   flightBox();
   drawChart(R);
@@ -463,11 +467,11 @@ el('dl-csv').onclick = () => {
     ['Canon SMB Built to Grow — Google Ads'],
     [`Период: ${fd(st.from)} — ${fd(st.to)}`, `Страна: ${st.country === 'all' ? 'все' : st.country}`, `Тип: ${st.type === 'all' ? 'все' : st.type}`],
     [],
-    ['Кампания', 'Страна', 'Тип', 'Показы', 'План показов', '% плана', 'Клики', 'План кликов', 'Недейств. клики', 'CTR %', 'Цена клика €', 'Расход €', 'План расхода €'],
+    ['Кампания', 'Страна', 'Тип', 'Показы', 'План показов', '% плана', 'Клики', 'План кликов', 'Фродовые клики', 'CTR %', 'Цена клика €', 'Расход €', 'План расхода €'],
     ...R.byC.map(x => [x.c.id, x.c.country, x.c.type, x.imp, r0(x.pImp), r2(x.pImp ? x.imp / x.pImp * 100 : 0), x.clk, r0(x.pClk), x.inv, r2(x.imp ? x.clk / x.imp * 100 : 0), r2(x.clk ? x.cost / x.clk : 0), r2(x.cost), r2(x.pCost)]),
     ['Итого', '', '', t.imp, r0(t.pImp), r2(t.pImp ? t.imp / t.pImp * 100 : 0), t.clk, r0(t.pClk), t.inv, r2(t.imp ? t.clk / t.imp * 100 : 0), r2(t.clk ? t.cost / t.clk : 0), r2(t.cost), r2(t.pCost)]
   ];
-  const days = [['Дата', 'Кампания', 'Страна', 'Тип', 'Показы', 'Клики', 'Недейств. клики', 'Расход €'], ...R.rows.map(r => [fd(r[0]), r[1], C[r[1]].country, C[r[1]].type, r[2], r[3], r[5] || 0, r2(r[4])])];
+  const days = [['Дата', 'Кампания', 'Страна', 'Тип', 'Показы', 'Клики', 'Фродовые клики', 'Расход €'], ...R.rows.map(r => [fd(r[0]), r[1], C[r[1]].country, C[r[1]].type, r[2], r[3], r[5] || 0, r2(r[4])])];
   const blob = makeXlsx([
     { name: 'Итог', rows: sum, bold: [0, 3, sum.length - 1], widths: [24, 14, 10, 12, 14, 10, 10, 13, 14, 9, 13, 11, 15] },
     { name: 'По дням', rows: days, bold: [0], widths: [12, 22, 14, 10, 11, 9, 14, 11] }
