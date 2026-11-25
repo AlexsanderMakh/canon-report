@@ -168,7 +168,7 @@ footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
   <div class="card section">
     <h2>Кампании</h2><p class="hint">План пересчитан на выбранные дни: медиаплан кампании ÷ 51 день флайта × число дней в периоде.</p>
     <div class="tw"><table id="tbl">
-      <thead><tr><th>Кампания</th><th>Показы</th><th>План показов</th><th>% плана</th><th>Клики</th><th>План кликов</th><th>CTR</th><th>Цена клика</th><th>Расход</th><th>План расхода</th></tr></thead>
+      <thead><tr><th>Кампания</th><th>Показы</th><th>План показов</th><th>% плана</th><th>Клики</th><th>План кликов</th><th>Недейств. клики</th><th>CTR</th><th>Цена клика</th><th>Расход</th><th>План расхода</th></tr></thead>
       <tbody></tbody><tfoot></tfoot>
     </table></div>
   </div>
@@ -213,6 +213,7 @@ footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
       <dl>
         <dt>Показы</dt><dd>сколько раз реклама была показана людям</dd>
         <dt>Клики</dt><dd>сколько раз по рекламе нажали и перешли на сайт</dd>
+        <dt>Недействительные клики</dt><dd>клики, которые система защиты Google от недействительного трафика распознала как фродовые (боты, автоклики, случайные и повторные нажатия) и отсеяла автоматически. Они не входят в клики отчёта и не оплачиваются. Дополнительно мы вручную исключаем площадки КМС с подозрительно высоким CTR.</dd>
         <dt>CTR</dt><dd>доля кликов от показов: клики ÷ показы</dd>
         <dt>Цена клика</dt><dd>средняя стоимость одного перехода: расход ÷ клики</dd>
         <dt>CPM</dt><dd>стоимость 1000 показов</dd>
@@ -280,12 +281,12 @@ function compute() {
   const rows = D.daily.filter(r => ids.has(r[1]) && r[0] >= st.from && r[0] <= st.to);
   const byC = camps.map(c => {
     const rr = rows.filter(r => r[1] === c.id);
-    const imp = rr.reduce((s, r) => s + r[2], 0), clk = rr.reduce((s, r) => s + r[3], 0), cost = rr.reduce((s, r) => s + r[4], 0);
+    const imp = rr.reduce((s, r) => s + r[2], 0), clk = rr.reduce((s, r) => s + r[3], 0), cost = rr.reduce((s, r) => s + r[4], 0), inv = rr.reduce((s, r) => s + (r[5] || 0), 0);
     const k = days.filter(d => d >= cStart(c)).length / cDays(c);
-    return { c, imp, clk, cost, pImp: c.impressions * k, pClk: c.clicks * k, pCost: c.budget * k };
+    return { c, imp, clk, cost, inv, pImp: c.impressions * k, pClk: c.clicks * k, pCost: c.budget * k };
   });
   const sum = (f) => byC.reduce((s, x) => s + x[f], 0);
-  const tot = { imp: sum('imp'), clk: sum('clk'), cost: sum('cost'), pImp: sum('pImp'), pClk: sum('pClk'), pCost: sum('pCost') };
+  const tot = { imp: sum('imp'), clk: sum('clk'), cost: sum('cost'), inv: sum('inv'), pImp: sum('pImp'), pClk: sum('pClk'), pCost: sum('pCost') };
   const byDay = days.map(d => {
     const rr = rows.filter(r => r[0] === d);
     return { d, impressions: rr.reduce((s, r) => s + r[2], 0), clicks: rr.reduce((s, r) => s + r[3], 0), cost: rr.reduce((s, r) => s + r[4], 0) };
@@ -348,10 +349,12 @@ function render() {
     if (p != null) { const [cls, txt] = status(p); pill = `<span class="pill ${cls}">${txt}</span>`; bar = `<div class="prog"><i style="width:${Math.min(100, p * 100)}%"></i></div>`; }
     return `<div class="card"><div class="k-l"><span>${label}</span>${pill}</div><div class="k-v">${v}</div><div class="k-n">${note}</div>${bar}</div>`;
   };
+  const kpiInv = (label, v, note) => `<div class="card"><div class="k-l"><span>${label}</span><span class="pill ok">антифрод</span></div><div class="k-v">${v}</div><div class="k-n">${note}</div></div>`;
   const kpiNeutral = (label, v, note, p) => `<div class="card"><div class="k-l"><span>${label}</span><span class="pill info">остаток</span></div><div class="k-v">${v}</div><div class="k-n">${note}</div><div class="prog"><i style="width:${Math.min(100, p * 100)}%;background:var(--info)"></i></div></div>`;
   el('kpis').innerHTML =
     kpi('Показы', nf(t.imp), `план ${nf(t.pImp)} · ${pct(ip)}`, ip) +
     kpi('Клики', nf(t.clk), `план ${nf(t.pClk)} · ${pct(cp)}`, cp) +
+    kpiInv('Недействительные клики', nf(t.inv), `отсеяно Google, не оплачены · ${(t.clk + t.inv) ? pct(t.inv / (t.clk + t.inv)) : '—'} всех кликов`) +
     kpiNeutral('Расход', eur(t.cost), `план ${eur(t.pCost, 0)} · остаток ${eur(Math.max(0, t.pCost - t.cost), 0)}`, t.pCost ? t.cost / t.pCost : 0) +
     kpi('CTR', t.imp ? pct(t.clk / t.imp) : '—', 'клики ÷ показы') +
     kpi('Цена клика', t.clk ? eur(t.cost / t.clk) : '—', 'расход ÷ клики') +
@@ -366,10 +369,10 @@ function render() {
     const p = x.pImp ? x.imp / x.pImp : 0;
     return `<tr><td><div class="cname">${x.c.id}</div><div class="cmeta">${x.c.country} · ${x.c.type}</div></td>
       <td>${nf(x.imp)}</td><td>${nf(x.pImp)}</td><td>${pct(p)}<span class="mini"><i style="width:${Math.min(100, p * 100)}%"></i></span></td>
-      <td>${nf(x.clk)}</td><td>${nf(x.pClk)}</td><td>${x.imp ? pct(x.clk / x.imp) : '—'}</td><td>${x.clk ? eur(x.cost / x.clk) : '—'}</td>
+      <td>${nf(x.clk)}</td><td>${nf(x.pClk)}</td><td>${nf(x.inv)}</td><td>${x.imp ? pct(x.clk / x.imp) : '—'}</td><td>${x.clk ? eur(x.cost / x.clk) : '—'}</td>
       <td>${eur(x.cost)}</td><td>${eur(x.pCost, 0)}</td></tr>`;
   }).join('');
-  tf.innerHTML = `<tr><td>Итого</td><td>${nf(t.imp)}</td><td>${nf(t.pImp)}</td><td>${pct(ip)}</td><td>${nf(t.clk)}</td><td>${nf(t.pClk)}</td><td>${t.imp ? pct(t.clk / t.imp) : '—'}</td><td>${t.clk ? eur(t.cost / t.clk) : '—'}</td><td>${eur(t.cost)}</td><td>${eur(t.pCost, 0)}</td></tr>`;
+  tf.innerHTML = `<tr><td>Итого</td><td>${nf(t.imp)}</td><td>${nf(t.pImp)}</td><td>${pct(ip)}</td><td>${nf(t.clk)}</td><td>${nf(t.pClk)}</td><td>${nf(t.inv)}</td><td>${t.imp ? pct(t.clk / t.imp) : '—'}</td><td>${t.clk ? eur(t.cost / t.clk) : '—'}</td><td>${eur(t.cost)}</td><td>${eur(t.pCost, 0)}</td></tr>`;
 }
 
 function drawChart(R) {
@@ -460,14 +463,14 @@ el('dl-csv').onclick = () => {
     ['Canon SMB Built to Grow — Google Ads'],
     [`Период: ${fd(st.from)} — ${fd(st.to)}`, `Страна: ${st.country === 'all' ? 'все' : st.country}`, `Тип: ${st.type === 'all' ? 'все' : st.type}`],
     [],
-    ['Кампания', 'Страна', 'Тип', 'Показы', 'План показов', '% плана', 'Клики', 'План кликов', 'CTR %', 'Цена клика €', 'Расход €', 'План расхода €'],
-    ...R.byC.map(x => [x.c.id, x.c.country, x.c.type, x.imp, r0(x.pImp), r2(x.pImp ? x.imp / x.pImp * 100 : 0), x.clk, r0(x.pClk), r2(x.imp ? x.clk / x.imp * 100 : 0), r2(x.clk ? x.cost / x.clk : 0), r2(x.cost), r2(x.pCost)]),
-    ['Итого', '', '', t.imp, r0(t.pImp), r2(t.pImp ? t.imp / t.pImp * 100 : 0), t.clk, r0(t.pClk), r2(t.imp ? t.clk / t.imp * 100 : 0), r2(t.clk ? t.cost / t.clk : 0), r2(t.cost), r2(t.pCost)]
+    ['Кампания', 'Страна', 'Тип', 'Показы', 'План показов', '% плана', 'Клики', 'План кликов', 'Недейств. клики', 'CTR %', 'Цена клика €', 'Расход €', 'План расхода €'],
+    ...R.byC.map(x => [x.c.id, x.c.country, x.c.type, x.imp, r0(x.pImp), r2(x.pImp ? x.imp / x.pImp * 100 : 0), x.clk, r0(x.pClk), x.inv, r2(x.imp ? x.clk / x.imp * 100 : 0), r2(x.clk ? x.cost / x.clk : 0), r2(x.cost), r2(x.pCost)]),
+    ['Итого', '', '', t.imp, r0(t.pImp), r2(t.pImp ? t.imp / t.pImp * 100 : 0), t.clk, r0(t.pClk), t.inv, r2(t.imp ? t.clk / t.imp * 100 : 0), r2(t.clk ? t.cost / t.clk : 0), r2(t.cost), r2(t.pCost)]
   ];
-  const days = [['Дата', 'Кампания', 'Страна', 'Тип', 'Показы', 'Клики', 'Расход €'], ...R.rows.map(r => [fd(r[0]), r[1], C[r[1]].country, C[r[1]].type, r[2], r[3], r2(r[4])])];
+  const days = [['Дата', 'Кампания', 'Страна', 'Тип', 'Показы', 'Клики', 'Недейств. клики', 'Расход €'], ...R.rows.map(r => [fd(r[0]), r[1], C[r[1]].country, C[r[1]].type, r[2], r[3], r[5] || 0, r2(r[4])])];
   const blob = makeXlsx([
-    { name: 'Итог', rows: sum, bold: [0, 3, sum.length - 1], widths: [24, 14, 10, 12, 14, 10, 10, 13, 9, 13, 11, 15] },
-    { name: 'По дням', rows: days, bold: [0], widths: [12, 22, 14, 10, 11, 9, 11] }
+    { name: 'Итог', rows: sum, bold: [0, 3, sum.length - 1], widths: [24, 14, 10, 12, 14, 10, 10, 13, 14, 9, 13, 11, 15] },
+    { name: 'По дням', rows: days, bold: [0], widths: [12, 22, 14, 10, 11, 9, 14, 11] }
   ]);
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
   a.download = `canon-report_${st.from}_${st.to}.xlsx`; document.body.appendChild(a); a.click(); a.remove();
