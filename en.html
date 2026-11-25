@@ -240,7 +240,7 @@ footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
   btn.onclick = () => { const t = root.dataset.theme === 'dark' ? 'light' : 'dark'; try { localStorage.setItem('theme', t); } catch (e) {} apply(t); };
 })();
 </script>
-<script src="data.js"></script>
+<script>document.write('<script src="data.js?t=' + Date.now() + '"><\/script>')</script>
 <script>
 (function(){
 const D = window.REPORT_DATA;
