@@ -46,10 +46,10 @@ input[type=date]{font:inherit;font-size:14px;border:1px solid var(--line);border
 .btn.ghost{background:var(--card);border:1px solid var(--line);color:var(--ink)}
 .summary{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px;font-size:16px;margin-bottom:18px}
 .summary b{font-weight:600}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}
+.kpis{margin-bottom:18px}.kpi-main{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.kpi-sub{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}.kpi-sub .card{padding:12px 18px}.kpi-sub .k-v{font-size:21px;margin:4px 0 0}.kpi-main .card{display:flex;flex-direction:column}.kpi-main .prog{margin-top:auto}.kpi-main .k-n{margin-bottom:10px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px}
-.k-l{font-size:13px;color:var(--muted);font-weight:500;display:flex;justify-content:space-between;gap:6px}
-.k-v{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.k-l{font-size:13px;color:var(--muted);font-weight:500;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.k-l>span:first-child{min-width:0;line-height:1.35}.k-l .pill{flex:none}
+.k-v{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .k-n{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 .prog{height:6px;background:var(--track);border-radius:99px;margin-top:10px;overflow:hidden}
 .prog i{display:block;height:100%;background:var(--accent);border-radius:99px}
@@ -84,6 +84,8 @@ details{margin-top:6px}summary{cursor:pointer;font-weight:600}
 dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:12px 0 0;font-size:14px}dt{font-weight:600}dd{margin:0;color:var(--muted)}
 .empty{color:var(--muted);font-size:14px;padding:30px 0;text-align:center}
 footer{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
+@media (max-width:960px){.kpi-main{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.kpi-main{grid-template-columns:minmax(0,1fr)}.kpi-sub{gap:10px}.kpi-sub .card{padding:10px 12px}.kpi-sub .k-v{font-size:18px}.kpi-sub .k-n{font-size:11px}}
 @media (max-width:640px){.bar{position:static}h1{font-size:21px}.k-v{font-size:24px}.controls{padding:12px}}
 @media print{
   body{background:#fff}.bar{position:static;padding:0}.controls .no-print,.seg,.btn{display:none!important}
@@ -352,16 +354,18 @@ function render() {
     if (p != null) { const [cls, txt] = status(p); pill = `<span class="pill ${cls}">${txt}</span>`; bar = `<div class="prog"><i style="width:${Math.min(100, p * 100)}%"></i></div>`; }
     return `<div class="card"><div class="k-l"><span>${label}</span>${pill}</div><div class="k-v">${v}</div><div class="k-n">${note}</div>${bar}</div>`;
   };
-  const kpiInv = (label, v, note) => `<div class="card"><div class="k-l"><span>${label}</span><span class="pill ok">anti-fraud</span></div><div class="k-v">${v}</div><div class="k-n">${note}</div></div>`;
+  const kpiInv = (label, v, note, p) => `<div class="card"><div class="k-l"><span>${label}</span><span class="pill ok">anti-fraud</span></div><div class="k-v">${v}</div><div class="k-n">${note}</div><div class="prog"><i style="width:${Math.min(100, p * 100)}%;background:var(--ok)"></i></div></div>`;
   const kpiNeutral = (label, v, note, p) => `<div class="card"><div class="k-l"><span>${label}</span><span class="pill info">remaining</span></div><div class="k-v">${v}</div><div class="k-n">${note}</div><div class="prog"><i style="width:${Math.min(100, p * 100)}%;background:var(--info)"></i></div></div>`;
   el('kpis').innerHTML =
+    '<div class="kpi-main">' +
     kpi('Impressions', nf(t.imp), `target ${nf(t.pImp)} · ${pct(ip)}`, ip) +
     kpi('Clicks', nf(t.clk), `target ${nf(t.pClk)} · ${pct(cp)}`, cp) +
-    kpiInv('Invalid clicks', nf(t.inv), `filtered by Google, not charged · ${(t.clk + t.inv) ? pct(t.inv / (t.clk + t.inv)) : '—'} of all clicks`) +
     kpiNeutral('Spend', eur(t.cost), `target ${eur(t.pCost, 0)} · remaining ${eur(Math.max(0, t.pCost - t.cost), 0)}`, t.pCost ? t.cost / t.pCost : 0) +
+    kpiInv('Invalid clicks', nf(t.inv), `filtered by Google, not charged · ${(t.clk + t.inv) ? pct(t.inv / (t.clk + t.inv)) : '—'} of all clicks`, (t.clk + t.inv) ? t.inv / (t.clk + t.inv) : 0) +
+    '</div><div class="kpi-sub">' +
     kpi('CTR', t.imp ? pct(t.clk / t.imp) : '—', 'clicks ÷ impressions') +
     kpi('CPC', t.clk ? eur(t.cost / t.clk) : '—', 'spend ÷ clicks') +
-    kpi('CPM', t.imp ? eur(t.cost / t.imp * 1000) : '—', 'cost per 1,000 impressions');
+    kpi('CPM', t.imp ? eur(t.cost / t.imp * 1000) : '—', 'cost per 1,000 impressions') + '</div>';
 
   flightBox();
   drawChart(R);
